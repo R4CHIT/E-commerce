@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from './components/NavBar/Navbar'
 import Homepage from './components/herosection/Homepage'
 import Footer from './components/footer/footer'
-import Diceroll from './components/dice/diceroll'
 
 const App = () => {
   return (
