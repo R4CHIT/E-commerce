@@ -41,7 +41,7 @@ function Homepage() {
   return (
     <>
       <div className="relative flex flex-col justify-center md:mt-0 mt-0 lg:mt-25 mx-0 md:mx-0 lg:mx-[100px] h-[88vh] md:rounded-[0px] rounded-[0px] lg:rounded-lg overflow-hidden">
-        <div className="flex fadein transform duration-300 flex-col justify-center h-full md:rounded-[0px] rounded-[0px] lg:rounded-lg bg-center bg-[url('herobg2.jpeg')] bg-cover">
+        <div className="flex fadein transform duration-300 flex-col justify-center h-full md:rounded-[0px] rounded-[0px] lg:rounded-lg bg-center bg-[url('/herobg2.jpeg')] bg-cover">
           <div className="absolute inset-0 bg-black/20" />
           <div className="relative px-6 md:px-20 text-white font-mono z-10">
             <div className="text-4xl md:text-6xl lg:text-7xl">Enjoy Your</div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 function Categories() {
   const Category = [
     {
-      img: "noodles.png",
+      img: "/noodles.png",
       title: "Pasta",
     },
     {
@@ -10,15 +10,15 @@ function Categories() {
       title: "Samosa",
     },
     {
-      img: "noodles.png",
+      img: "/noodles.png",
       title: "Rice",
     },
     {
-      img: "noodles.png",
+      img: "/noodles.png",
       title: "Meat",
     },
     {
-      img: "noodles.png",
+      img: "/noodles.png",
       title: "Roti",
     },
   ];

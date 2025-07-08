@@ -13,8 +13,7 @@ const Navbar = () => {
     <div className="w-full fixed top-0 left-0 z-50 bg-white shadow-xl">
       <nav className="flex justify-between items-center h-20 px-4 md:px-10">
         <div className="text-white  relative">
-          <img src="logo2.png" alt="logo" className="h-25 w-25" />
-          
+          <img src="/logo2.png" alt="logo" className="h-25 w-25" />
         </div>
 
         <div className="hidden lg:flex items-center gap-10 text-[18px] font-medium">
