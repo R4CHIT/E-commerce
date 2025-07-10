@@ -1,75 +1,10 @@
 import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import Categories from "../category/Categories";
-import Popularitem from "../Product.jsx/Popularitem";
+import Popularitem from "../Product/Popularitem";
 
 function Homepage() {
-  const data = [
-    {
-      id: 1,
-      name: " Pizza",
-      ingredients: [
-        "Pizza dough",
-        "Tomato sauce",
-        "Fresh mozzarella cheese",
-        "Fresh basil leaves",
-        "Olive oil",
-        "Salt and pepper to taste",
-      ],
-      instructions: [
-        "Preheat the oven to 475°F (245°C).",
-        "Roll out the pizza dough and spread tomato sauce evenly.",
-        "Top with slices of fresh mozzarella and fresh basil leaves.",
-        "Drizzle with olive oil and season with salt and pepper.",
-        "Bake in the preheated oven for 12-15 minutes or until the crust is golden brown.",
-        "Slice and serve hot.",
-      ],
-      prepTimeMinutes: 20,
-      cookTimeMinutes: 15,
-      servings: 4,
-      difficulty: "Easy",
-      cuisine: "Italian",
-      price: 300,
-      tags: ["Pizza", "Italian"],
-      userId: 166,
-      image: "https://cdn.dummyjson.com/recipe-images/1.webp",
-      rating:2,
-      reviewCount: 98,
-      mealType: ["Dinner"],
-    },
-    {
-      id: 1,
-      name: " Pizza",
-      ingredients: [
-        "Pizza dough",
-        "Tomato sauce",
-        "Fresh mozzarella cheese",
-        "Fresh basil leaves",
-        "Olive oil",
-        "Salt and pepper to taste",
-      ],
-      instructions: [
-        "Preheat the oven to 475°F (245°C).",
-        "Roll out the pizza dough and spread tomato sauce evenly.",
-        "Top with slices of fresh mozzarella and fresh basil leaves.",
-        "Drizzle with olive oil and season with salt and pepper.",
-        "Bake in the preheated oven for 12-15 minutes or until the crust is golden brown.",
-        "Slice and serve hot.",
-      ],
-      prepTimeMinutes: 20,
-      cookTimeMinutes: 15,
-      servings: 4,
-      difficulty: "Easy",
-      cuisine: "Spanish",
-      price: 300,
-      tags: ["Pizza", "Italian"],
-      userId: 166,
-      image: "https://cdn.dummyjson.com/recipe-images/1.webp",
-      rating:2,
-      reviewCount: 98,
-      mealType: ["Dinner"],
-    },
-  ];
+  
   return (
     <>
       <div className="relative flex flex-col justify-center md:mt-0 mt-0 lg:mt-25 mx-0 md:mx-0 lg:mx-[100px] h-[88vh] md:rounded-[0px] rounded-[0px] lg:rounded-lg overflow-hidden">
@@ -90,7 +25,7 @@ function Homepage() {
       </div>
       <Categories />
       <Popularitem 
-      data={data}
+     
        />
     </>
   );
