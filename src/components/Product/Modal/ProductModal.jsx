@@ -4,33 +4,37 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 import { IoStarOutline } from "react-icons/io5";
 import { GrFavorite } from "react-icons/gr";
 
-const ProductModal = ({ data, setShowModal ,showModal}) => {
+const ProductModal = ({ data, setShowModal, showModal }) => {
   const [favorites, setFavorites] = useState([]);
-
+  const [cart, setCart] = useState(false);
+  const handleClickCart = () => {
+    setCart((prev) =>
+     !prev
+    );
+  };
   const toggleFavorite = (id) => {
     setFavorites((prev) =>
       prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
     );
   };
-  const handllehideModal=()=>{
-    setShowModal(!showModal)
-   
-      
-  }
+  const handllehideModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center px-4"
-    onClick={handllehideModal}
+    <div
+      className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center px-4"
+      onClick={handllehideModal}
     >
-      <div className="bg-white dark:bg-[#1e1e1e] flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 w-full max-w-3xl mx-auto"
-      onClick={(e)=>e.stopPropagation()}
+      <div
+        className="bg-white dark:bg-[#1e1e1e] flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 w-full max-w-3xl mx-auto"
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="relative w-full md:w-1/2 h-60 md:h-auto">
           <img
             src={data?.image}
             alt={data?.name}
             className="w-full h-full object-cover"
-            
           />
           <button
             className="absolute top-3 right-3 text-2xl z-10"
@@ -70,13 +74,29 @@ const ProductModal = ({ data, setShowModal ,showModal}) => {
             <span className="text-2xl font-extrabold text-[#fa7516]">
               ${data?.caloriesPerServing}
             </span>
-            <button
-              onClick={() => handlleShowModal(data.id)}
-              className="flex items-center gap-2 bg-[#fa7516] hover:bg-[#f97216] text-white text-sm px-4 py-2 rounded-lg transition-all duration-200 shadow-md"
-            >
-              <FaShoppingCart />
-              Add to Cart
-            </button>
+            {cart ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClickCart();
+                }}
+                className="flex items-center gap-2 bg-blue-500  text-white text-sm px-3 py-1 rounded-md transition duration-200"
+              >
+                <FaShoppingCart />
+                Added to Cart
+              </button>
+            ) : (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleClickCart();
+                }}
+                className="flex items-center gap-2 bg-[#fa7516] text-white text-sm px-3 py-1 rounded-md transition duration-200"
+              >
+                <FaShoppingCart />
+                Add to Cart
+              </button>
+            )}
           </div>
         </div>
       </div>
