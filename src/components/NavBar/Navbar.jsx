@@ -3,12 +3,14 @@ import { IoIosSearch } from "react-icons/io";
 import { FiShoppingCart } from "react-icons/fi";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseSharp } from "react-icons/io5";
+import { NavLink, useNavigate } from "react-router";
 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  
-
+  const count = JSON.parse(localStorage.getItem('cart')).length
+  console.log(count)
+  const navigate = useNavigate()
   return (
     <div className="w-full fixed top-0 left-0 z-50 bg-white shadow-xl">
       <nav className="flex justify-between items-center h-20 px-4 md:px-10">
@@ -17,10 +19,10 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-10 text-[18px] font-medium">
-          <div className="hover:text-amber-500 cursor-pointer">Home</div>
-          <div className="hover:text-amber-500 cursor-pointer">About</div>
-          <div className="hover:text-amber-500 cursor-pointer">Contact</div>
-          <div className="hover:text-amber-500 cursor-pointer">Pricing</div>
+          <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">Home</NavLink>
+          <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">About</NavLink>
+          <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">Contact</NavLink>
+          <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">Pricing</NavLink>
         </div>
 
         <div className="hidden lg:flex items-center gap-6">
@@ -33,7 +35,7 @@ const Navbar = () => {
             <IoIosSearch className="text-xl" />
           </div>
          <div className="relative">
-           <FiShoppingCart className="text-2xl" /><span className="absolute text-white bg-blue-600 h-4 w-4 rounded-2xl text-[10px] flex justify-center items-center bottom-3 left-4">0</span>
+           <FiShoppingCart onClick={()=>navigate('/cart')} className="text-2xl" /><span className="absolute text-white bg-blue-600 h-4 w-4 rounded-2xl text-[10px] flex justify-center items-center bottom-3 left-4">{count}</span>
          </div>
         </div>
 

@@ -10,14 +10,6 @@ function Popularitem() {
   useEffect(() => {
     productDataApi(setProductData);
   }, []);
-  const handlleShowModal = (id) => {
-    const selectedItem = product.find((item) => item.id === id);
-    if (selectedItem) {
-      setData(selectedItem);
-      setShowModal(!showModal);
-    }
-  };
-  
   return (
     <>
       
