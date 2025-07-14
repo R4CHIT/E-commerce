@@ -1,108 +1,104 @@
-import React from 'react'
-import { useState } from 'react';
-import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import { MdOutlineStarPurple500 } from "react-icons/md";
-import { IoStarOutline } from "react-icons/io5";
+import React, { useState } from "react";
 import { GrFavorite } from "react-icons/gr";
-
-
+import { MdDeleteForever } from "react-icons/md";
+import { FaHeart } from "react-icons/fa";
 const Cartcard = (product) => {
-    const [showModal, setShowModal] = useState(false);
-      const [cartbool, setCartbool] = useState(false);
-      const [favbool, setfavbool] = useState(false);
-      const item = product?.item
-      const handleClickCart = () => {
-        if (cartbool == true) {
-          setCartbool(false);
-          
-        } else {
-          setCartbool(true)
-          
-          
-        }
-      };
-      const toggleFavorite = () => {
-        if (favbool == true) {
-          setfavbool(false);
-        } else {
-          setfavbool(true);
-        }
-      };
-  return (
-    <div>
-      <div
-             className="bg-white rounded-2xl min-h-90 overflow-hidden shadow-md hover:shadow-2xl transition duration-300 relative group"
-             onClick={() => setShowModal(true)}
-           >
-             <div className="relative">
-               <img
-                 src={item?.image}
-                 alt={item?.name}
-                 className="w-full h-52 object-cover"
-               />
-               <button
-                 className="absolute top-3 right-3 text-xl"
-                 onClick={(e) => {
-                   e.stopPropagation();
-                   toggleFavorite();
-                 }}
-               >
-                 {favbool ? (
-                   <FaHeart className="text-red-400 drop-shadow" />
-                 ) : (
-                   <GrFavorite className="text-white drop-shadow" />
-                 )}
-               </button>
-             </div>
-     
-             <div className="p-4 ">
-               <div className="text-center text-gray-500 text-sm mb-1">
-                 {item?.mealType}
-               </div>
-               <div className="flex justify-between items-center mb-2  min-h-20">
-                 <h2 className="text-lg font-semibold text-gray-800">
-                   {item?.name}
-                 </h2>
-                 <div className="flex gap-1 text-yellow-400 text-xl">
-                   {[...Array(Math.floor(item?.rating) || 0)].map((_, idx) => (
-                     <MdOutlineStarPurple500 key={idx} />
-                   ))}
-     
-                   {[...Array(5 - (Math.floor(item?.rating) || 0))].map((_, idx) => (
-                     <IoStarOutline key={idx} />
-                   ))}
-                 </div>
-               </div>
-     
-               <div className="flex justify-between items-center mt-4">
-                 <span className="text-xl font-bold text-[#fa7516]">
-                   ${item?.caloriesPerServing}
-                 </span>
-     
-                 <button
-                   onClick={(e) => {
-                     e.stopPropagation();
-                     handleClickCart(item);
-                   }}
-                   className={`flex items-center gap-2 ${
-                     cartbool ? "bg-blue-500" : "bg-[#fa7516]"
-                   } text-white text-sm px-3 py-1 rounded-md transition duration-200`}
-                 >
-                   <FaShoppingCart />
-                   {cartbool ? "Added to Cart" : "Add to cart"}
-                 </button>
-               </div>
-             </div>
-           </div>
-           {showModal && (
-             <ProductModal
-               data={item}
-               setShowModal={setShowModal}
-               showModal={showModal}
-             />
-           )}
-    </div>
-  )
-}
+  const [favbool, setfavbool] = useState(false);
+  const [quantity, setquantity] = useState(1);
+  const item = product?.item;
+  const toggleFavorite = () => {
+    if (favbool == true) {
+      setfavbool(false);
+    } else {
+      setfavbool(true);
+    }
+  };
+  const handleQuantityChange = (e) => {
+    setquantity(e.target.value);
+  };
 
-export default Cartcard
+  return (
+    <div className="w-full flex justify-center">
+      <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl  w-[90vw] sm:w-[70vw] flex flex-row overflow-hidden border border-gray-200">
+
+        <div className="sm:w-1/3 w-full flex justify-center items-center bg-gray-50 p-4">
+          <img
+            src={item?.image}
+            alt={item?.name}
+            className="w-full sm:w-44 h-44 object-cover rounded-xl"
+          />
+        </div>
+
+        <div className="p-5 flex flex-col justify-between sm:w-2/3 w-full gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div>
+              <h2 className="text-xl font-bold text-gray-800">{item?.name}</h2>
+              <p className="text-sm text-gray-500 mt-1">{item?.mealType}</p>
+            </div>
+
+            <div className="flex items-center sm:items-end flex-col gap-2 sm:gap-1">
+              <span className="text-xl font-bold text-[#f57125]">
+                ${item?.caloriesPerServing}
+              </span>
+              <div className="flex gap-3 text-xl text-gray-700"
+              onClick={()=>{
+                toggleFavorite()
+                
+              }}
+              >
+                {favbool ? (
+                  <FaHeart className="text-red-400 drop-shadow" />
+                ) : (
+                  <GrFavorite className="text-black drop-shadow" />
+                )}
+                <MdDeleteForever className="cursor-pointer hover:text-red-500 transition" />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <button
+                className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (quantity === 1) {
+                    setquantity(1);
+                  } else {
+                    setquantity((prev) => prev - 1);
+                  }
+                }}
+              >
+                -
+              </button>
+
+              <input
+                type=""
+                min={1}
+                value={quantity}
+                onChange={handleQuantityChange}
+                className="w-14 text-center border border-gray-300 rounded-md px-2 py-1 outline-none focus:ring-2 focus:ring-orange-400"
+              />
+
+              <button
+                className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setquantity((prev) => prev + 1);
+                }}
+              >
+                +
+              </button>
+            </div>
+
+            <button className="bg-[#f57125] text-white px-5 py-2 rounded-md font-semibold hover:bg-[#e35e16] transition">
+              Order Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Cartcard;

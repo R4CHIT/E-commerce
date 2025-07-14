@@ -8,8 +8,13 @@ import { NavLink, useNavigate } from "react-router";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const count = JSON.parse(localStorage.getItem('cart')).length
-  console.log(count)
+  let count = 0
+  if(localStorage.getItem('cart')==null){
+    count = 0
+  }
+  else{
+    count = JSON.parse(localStorage.getItem('cart')).length
+  }
   const navigate = useNavigate()
   return (
     <div className="w-full fixed top-0 left-0 z-50 bg-white shadow-xl">
@@ -35,7 +40,7 @@ const Navbar = () => {
             <IoIosSearch className="text-xl" />
           </div>
          <div className="relative">
-           <FiShoppingCart onClick={()=>navigate('/cart')} className="text-2xl" /><span className="absolute text-white bg-blue-600 h-4 w-4 rounded-2xl text-[10px] flex justify-center items-center bottom-3 left-4">{count}</span>
+           <FiShoppingCart onClick={()=>navigate('/cart')} className="text-2xl" /><span className="absolute text-white bg-blue-600 h-4 w-4 rounded-2xl text-[10px] flex justify-center items-center bottom-3 left-4">{count==null?(0):(count)}</span>
          </div>
         </div>
 

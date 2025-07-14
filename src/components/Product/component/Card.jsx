@@ -17,7 +17,6 @@ const Card = ({ item }) => {
       
     } else {
       setCartbool(true)
-      
       addToCart(item);
     }
   };
@@ -38,7 +37,7 @@ const Card = ({ item }) => {
           <img
             src={item?.image}
             alt={item?.name}
-            className="w-full h-52 object-cover"
+            className="w-full h-52 object-cover rounded-md"
           />
           <button
             className="absolute top-3 right-3 text-xl"

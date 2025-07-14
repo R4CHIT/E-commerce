@@ -5,7 +5,6 @@ const addToCart = (productData)=>{
     {
         let tempArr = [];
         tempArr.push(productData)
-        console.log(tempArr)
         localStorage.setItem('cart',JSON.stringify(tempArr))
     }
     else{
