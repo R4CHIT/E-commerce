@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { GrFavorite } from "react-icons/gr";
 import { MdDeleteForever } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
+import removeFromCart from "../components/localstorage/removeFromCart";
 const Cartcard = (product) => {
   const [favbool, setfavbool] = useState(false);
   const [quantity, setquantity] = useState(1);
-  const item = product?.item;
+  const item = product?.item; 
+  // console.log(product);
   const toggleFavorite = () => {
     if (favbool == true) {
       setfavbool(false);
@@ -13,15 +15,11 @@ const Cartcard = (product) => {
       setfavbool(true);
     }
   };
-  const handleQuantityChange = (e) => {
-    setquantity(e.target.value);
-  };
 
   return (
     <div className="w-full flex justify-center">
       <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl  w-[90vw] sm:w-[70vw] flex flex-row overflow-hidden border border-gray-200">
-
-        <div className="sm:w-1/3 w-full flex justify-center items-center bg-gray-50 p-4">
+        <div className="sm:w-1/3 w-full flex justify-center items-center p-4">
           <img
             src={item?.image}
             alt={item?.name}
@@ -40,18 +38,23 @@ const Cartcard = (product) => {
               <span className="text-xl font-bold text-[#f57125]">
                 ${item?.caloriesPerServing}
               </span>
-              <div className="flex gap-3 text-xl text-gray-700"
-              onClick={()=>{
-                toggleFavorite()
-                
-              }}
-              >
+              <div className="flex gap-3 text-xl text-gray-700">
                 {favbool ? (
-                  <FaHeart className="text-red-400 drop-shadow" />
+                  <FaHeart
+                    onClick={() => {
+                      toggleFavorite();
+                    }}
+                    className="text-red-400 drop-shadow"
+                  />
                 ) : (
-                  <GrFavorite className="text-black drop-shadow" />
+                  <GrFavorite
+                    onClick={() => {
+                      toggleFavorite();
+                    }}
+                    className="text-black drop-shadow"
+                  />
                 )}
-                <MdDeleteForever className="cursor-pointer hover:text-red-500 transition" />
+                <MdDeleteForever onClick={()=>removeFromCart(item)} className="cursor-pointer hover:text-red-500 transition" />
               </div>
             </div>
           </div>
@@ -62,7 +65,7 @@ const Cartcard = (product) => {
                 className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (quantity === 1) {
+                  if (quantity == 1) {
                     setquantity(1);
                   } else {
                     setquantity((prev) => prev - 1);
@@ -72,13 +75,11 @@ const Cartcard = (product) => {
                 -
               </button>
 
-              <input
-                type=""
-                min={1}
-                value={quantity}
-                onChange={handleQuantityChange}
+              <div
+               
                 className="w-14 text-center border border-gray-300 rounded-md px-2 py-1 outline-none focus:ring-2 focus:ring-orange-400"
-              />
+              >{quantity}
+                </div>
 
               <button
                 className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
