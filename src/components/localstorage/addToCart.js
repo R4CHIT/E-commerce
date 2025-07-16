@@ -10,6 +10,7 @@ const addToCart = (productData)=>{
     }
     else{
 
+        
         let tempArr = JSON.parse(localStorage.getItem('cart'));
         let tempArray = tempArr.filter((item)=>item.id==productData.id)
         if (tempArray != 0 ){
