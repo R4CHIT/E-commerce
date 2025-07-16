@@ -6,7 +6,7 @@ const Cart = () => {
   
   const data =localStorage.getItem("cart")
   const [item, setItem] = useState(JSON.parse(data));
-  const itemcount = 1
+  const itemcount = JSON.parse(localStorage.getItem('cart')).length
   return (
     <div className="md:px-10 lg:px-20 bg-whiten mt-30  ">
         <Navbar />

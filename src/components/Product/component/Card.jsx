@@ -4,7 +4,7 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 import { IoStarOutline } from "react-icons/io5";
 import { GrFavorite } from "react-icons/gr";
 import ProductModal from "../Modal/ProductModal";
-import addToCart from "../../localstorage/addtocart";
+import addToCart from "../../localstorage/addToCart";
 
 const Card = ({ item }) => {
   const [showModal, setShowModal] = useState(false);
