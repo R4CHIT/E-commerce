@@ -3,6 +3,7 @@ import { GrFavorite } from "react-icons/gr";
 import { MdDeleteForever } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import removeFromCart from "../components/localstorage/removeFromCart";
+import Quantity from "./Quantity";
 const Cartcard = ({ product, setItem }) => {
   const [favbool, setfavbool] = useState(false);
   
@@ -67,36 +68,7 @@ const [quantity, setquantity] = useState(items?.quantity);
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <button
-                className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (quantity == 1) {
-                    setquantity(1);
-                  } else {
-                    setquantity((prev) => prev - 1);
-                  }
-                }}
-              >
-                -
-              </button>
-
-              <div className="w-14 text-center border border-gray-300 rounded-md px-2 py-1 outline-none focus:ring-2 focus:ring-orange-400">
-                {items?.quantity}
-              </div>
-
-              <button
-                className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setquantity((prev) => prev + 1);
-                }}
-              >
-                +
-              </button>
-            </div>
-
+            <Quantity data={items} quantity={items?.quantity} setItem={setItem}/> 
             <button className="bg-[#f57125] text-white px-5 py-2 rounded-md font-semibold hover:bg-[#e35e16] transition">
               Order Now
             </button>
