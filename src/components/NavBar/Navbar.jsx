@@ -23,14 +23,14 @@ const Navbar = () => {
           <img src="/logo2.png" alt="logo" className="h-25 w-25" />
         </div>
 
-        <div className="hidden lg:flex items-center gap-10 text-[18px] font-medium">
+        {/* <div className="hidden lg:flex items-center gap-10 text-[18px] font-medium">
           <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">Home</NavLink>
           <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">About</NavLink>
           <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">Contact</NavLink>
           <NavLink to={'/'} className="hover:text-amber-500 cursor-pointer">Pricing</NavLink>
-        </div>
+        </div> */}
 
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="flex lg:flex items-center gap-6">
           <div className="flex items-center bg-gray-100 rounded-2xl text-black h-10 w-60 justify-between px-2">
             <input
               type="text"
@@ -44,7 +44,7 @@ const Navbar = () => {
          </div>
         </div>
 
-        <div className="flex lg:hidden">
+        {/* <div className="flex lg:hidden">
           {menuOpen ? (
             <IoCloseSharp
               className="text-3xl cursor-pointer"
@@ -56,16 +56,13 @@ const Navbar = () => {
               onClick={() => setMenuOpen(true)}
             />
           )}
-        </div>
+        </div> */}
       </nav>
 
       {/* Mobile Menu */}
-      {menuOpen && (
+      {/* {menuOpen && (
         <div className="flex flex-col lg:hidden bg-white shadow-md px-6 py-4 text-[18px] gap-4 font-medium">
-          <div className="hover:text-amber-500 cursor-pointer">Home</div>
-          <div className="hover:text-amber-500 cursor-pointer">About us</div>
-          <div className="hover:text-amber-500 cursor-pointer">Contact</div>
-          <div className="hover:text-amber-500 cursor-pointer">Pricing</div>
+         
           <div className="flex items-center bg-gray-100 rounded-2xl text-black h-10 w-full justify-between px-2">
             <input
               type="text"
@@ -75,7 +72,7 @@ const Navbar = () => {
             <IoIosSearch className="text-xl" />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
