@@ -3,8 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter,createBrowserRouter,RouterProvider } from 'react-router'
-import Cart from './Cart/Cart.jsx'
-
+import Cart from './components/Cart/Cart.jsx'
 
 const router = createBrowserRouter([
   {
@@ -13,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/cart",
-    element: <div><Cart /></div>,
+    element: <div><Cart/></div>,
   },
 ]);
 

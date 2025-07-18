@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { GrFavorite } from "react-icons/gr";
 import { MdDeleteForever } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
-import removeFromCart from "../components/localstorage/removeFromCart";
+import removeFromCart from "../localstorage/removeFromCart";
 import Quantity from "./Quantity";
+import OrangeButton from "../Button/OrangeButton";
+
 const Cartcard = ({ product, setItem }) => {
   const [favbool, setfavbool] = useState(false);
   
@@ -69,9 +71,7 @@ const [quantity, setquantity] = useState(items?.quantity);
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <Quantity data={items} quantity={items?.quantity} setItem={setItem}/> 
-            <button className="bg-[#f57125] text-white px-5 py-2 rounded-md font-semibold hover:bg-[#e35e16] transition">
-              Order Now
-            </button>
+            <OrangeButton title={'Order now'}/>
           </div>
         </div>
       </div>
