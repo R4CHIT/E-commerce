@@ -19,8 +19,8 @@ const Navbar = () => {
   return (
     <div className="w-full fixed top-0 left-0 z-50 bg-white shadow-xl">
       <nav className="flex justify-between items-center h-20 px-4 md:px-10">
-        <div className="text-white  relative">
-          <img src="/logo2.png" alt="logo" className="h-25 w-25" />
+        <div className="text-white  relative" onClick={()=>navigate('/')}>
+          <img src="/logo2.png" alt="logo" className="h-30 w-30" />
         </div>
 
         {/* <div className="hidden lg:flex items-center gap-10 text-[18px] font-medium">
@@ -40,7 +40,7 @@ const Navbar = () => {
             <IoIosSearch className="text-xl" />
           </div>
          <div className="relative">
-           <FiShoppingCart onClick={()=>navigate('/cart')} className="text-2xl" /><span className="absolute text-white bg-blue-600 h-4 w-4 rounded-2xl text-[10px] flex justify-center items-center bottom-3 left-4">{count==null?(0):(count)}</span>
+           <FiShoppingCart onClick={()=>navigate('/cart')} className="text-3xl" /><span className="absolute text-white bg-blue-600 h-5 w-5 rounded-2xl text-[12px] flex justify-center items-center bottom-4 left-5">{count==null?(0):(count)}</span>
          </div>
         </div>
 
