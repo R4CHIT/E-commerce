@@ -8,19 +8,16 @@ const CheckoutModal = ({ visible, setVisible, product }) => {
   const [city, setCity] = useState("");
   const [postalcode, setPostalcode] = useState("");
 
- const  handleSubmit=()=>{
-    const formdata = new FormData();
-    formdata.append("firstname", firstName);
-    formdata.append("lastname", lastName);
-    formdata.append("country", country);
-    formdata.append("state", state);
-    formdata.append("city", city);
-    formdata.append("postalcode", postalcode);
-    formdata.append("productsDetail",JSON.stringify(product));
-    const formEntries = Array.from(formdata.entries());
-    console.log(formEntries);
-
- }
+  const handleSubmit = () => {
+    // const formdata = new FormData();
+    // formdata.append("firstname", firstName);
+    // formdata.append("lastname", lastName);
+    // formdata.append("country", country);
+    // formdata.append("state", state);
+    // formdata.append("city", city);
+    // formdata.append("postalcode", postalcode);
+    // formdata.append("productsDetail",JSON.stringify(product));
+  };
 
   return (
     <div
@@ -32,10 +29,10 @@ const CheckoutModal = ({ visible, setVisible, product }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-2xl font-semibold text-[#111827]">
-          Check Out Form
+          Billing Detail
         </div>
 
-        <div className="flex flex-col gap-4 justify-center items-center">
+        <div className="flex flex-col gap-4 justify-center items-center">~
           <div className="flex gap-3 w-full">
             <div className="flex flex-col w-1/2">
               <label
@@ -93,7 +90,7 @@ const CheckoutModal = ({ visible, setVisible, product }) => {
               placeholder="Enter your City"
               className="p-2 bg-[#F9FAFB] text-[#111827] border border-[#E5E7EB] rounded-md outline-none focus:ring-2 focus:ring-white"
               value={city}
-                onChange={(e)=>setCity(e.target.value)}
+              onChange={(e) => setCity(e.target.value)}
             />
           </div>
           <div className="w-full flex flex-col">
@@ -103,12 +100,15 @@ const CheckoutModal = ({ visible, setVisible, product }) => {
               placeholder="Enter your Postal Code"
               className="p-2 bg-[#F9FAFB] text-[#111827] border border-[#E5E7EB] rounded-md outline-none focus:ring-2 focus:ring-white"
               value={postalcode}
-              onChange={(e)=>setPostalcode(e.target.value)}
+              onChange={(e) => setPostalcode(e.target.value)}
             />
           </div>
 
           <div className="pt-2">
-            <button className="bg-red-500 hover:bg-black text-white font-medium px-6 py-2 rounded-md transition-all duration-200" onClick={handleSubmit}>
+            <button
+              className="bg-red-500 hover:bg-black text-white font-medium px-6 py-2 rounded-md transition-all duration-200"
+              onClick={handleSubmit}
+            >
               Place Order
             </button>
           </div>
