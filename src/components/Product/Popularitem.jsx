@@ -20,7 +20,6 @@ function Popularitem() {
       ))}
           </div>
         </div>
-    
     </>
   );
 }

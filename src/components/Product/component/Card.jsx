@@ -37,7 +37,7 @@ const Card = ({ item }) => {
           <img
             src={item?.image}
             alt={item?.name}
-            className="w-full h-52 object-cover rounded-md"
+            className="w-full h-70 object-cover rounded-md"
           />
           <button
             className="absolute top-3 right-3 text-xl"
@@ -59,10 +59,10 @@ const Card = ({ item }) => {
             {item?.mealType}
           </div>
           <div className="flex justify-between items-center mb-2  min-h-20">
-            <h2 className="text-lg font-semibold text-gray-800">
+            <h2 className="text-xl font-semibold text-gray-800">
               {item?.name}
             </h2>
-            <div className="flex gap-1 text-yellow-400 text-xl">
+            <div className="flex gap-1 text-yellow-400 text-2xl">
               {[...Array(Math.floor(item?.rating) || 0)].map((_, idx) => (
                 <MdOutlineStarPurple500 key={idx} />
               ))}
@@ -85,7 +85,7 @@ const Card = ({ item }) => {
               }}
               className={`flex items-center gap-2 ${
                 cartbool ? "bg-blue-500" : "bg-[#fa7516]"
-              } text-white text-sm px-3 py-1 rounded-md transition duration-200`}
+              } text-white text-[15px] px-3 py-2 rounded-md transition duration-200`}
             >
               <FaShoppingCart />
               {cartbool ? "Added to Cart" : "Add to cart"}

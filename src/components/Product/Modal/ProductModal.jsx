@@ -77,9 +77,9 @@ const ProductModal = ({ data, setShowModal, showModal }) => {
             {cart ? (
               <button
                 onClick={(e) => {
-                  e.stopPropagation();
-                  handleClickCart();
-                }}
+                e.stopPropagation();
+                handleClickCart(item);
+              }}
                 className="flex items-center gap-2 bg-blue-500  text-white text-sm px-3 py-1 rounded-md transition duration-200"
               >
                 <FaShoppingCart />

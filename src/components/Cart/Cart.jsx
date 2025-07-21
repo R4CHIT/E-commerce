@@ -6,42 +6,74 @@ import OrangeButton from "../Button/OrangeButton";
 import CheckoutModal from "./Modal/CheckoutModal";
 
 const Cart = () => {
-  
-  const data =localStorage.getItem("cart")
+  const data = localStorage.getItem("cart");
   const [item, setItem] = useState(data ? JSON.parse(data) : []);
-  const [visible,setVisible] = useState(false)
-  
-  return (
-    <div className="md:px-10 lg:px-20 bg-whiten mt-30  ">
-        <Navbar />
-        {item.length === 0 ? (
-          <div className="flex justify-center items-center h-[60vh] transform duration-600 text-3xl md:text-5xl text-pink-500">No item in Cart</div>
-        ) : (
-          <div className="grid grid-cols-1 gap-3">
-            {item.map((item, index) => (
-              <Cartcard className="grid grid:cols-1 gap-10" setItem={setItem} product={item} key={index} />
-            ))}
-            <div className="flex justify-between border-t-2 border-black mx-4 md:my-5 md:mx-30">
+  const [visible, setVisible] = useState(false);
 
-              <div className="flex justify-between w-[100vw] my-10 mx-5">
-                <div>
-                <OrangeButton title={"Check Out"} onClick={()=>setVisible((prev)=>!prev)}/>
-              </div>
-              
-              <div className="flex gap-1 md:gap-4 font-bold text-xl md:text-2xl text-orange-500">
-                <div>Total Amount -</div>
-                <div className="text-gray-700">${totalAmount(item)}</div>
-              </div>
-              </div>
-            </div>
+  return (
+    <div className="bg-whiten min-h-screen pt-20 pb-10 px-4 md:px-10 lg:px-40">
+      <Navbar />
+
+      {item.length === 0 ? (
+        <div className="flex justify-center items-center h-[60vh] text-3xl md:text-5xl text-pink-500">
+          No item in Cart
+        </div>
+      ) : (
+        <div className="flex flex-col lg:flex-row gap-6 mt-10">
+          {/* Left Side: Cart Items */}
+          <div className="w-full lg:w-[60%] flex flex-col gap-4">
+            {item.map((item, index) => (
+              <Cartcard
+                key={index}
+                setItem={setItem}
+                product={item}
+              />
+            ))}
           </div>
-        )}
-        {
-          visible && (
-            <CheckoutModal visible={visible} product={item} setVisible={setVisible}/>
-          )
-        }
-      </div>
+
+          {/* Right Side: Order Summary */}
+          <div className="w-full lg:w-[40%] bg-white p-6 rounded-md shadow-md border h-fit sticky top-24">
+  <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">
+    Order Summary 🧾
+  </h2>
+
+  <div className="flex flex-col gap-2 text-lg text-gray-700">
+    <div className="flex justify-between">
+      <span>Subtotal</span>
+      <span>${totalAmount(item)}</span>
+    </div>
+
+    <div className="flex justify-between">
+      <span>Shipping</span>
+      <span>$0.00</span>
+    </div>
+
+    <div className="flex justify-between font-bold text-orange-500 text-xl mt-2 border-t pt-3">
+      <span>Total Amount</span>
+      <span>${totalAmount(item)}</span>
+    </div>
+  </div>
+
+  <div className="mt-6">
+    <OrangeButton
+      title="Proceed to Checkout"
+      onClick={() => setVisible((prev) => !prev)}
+    />
+  </div>
+</div>
+
+        </div>
+      )}
+
+      {visible && (
+        
+            <CheckoutModal
+              visible={visible}
+              product={item}
+              setVisible={setVisible}
+            />
+      )}
+    </div>
   );
 };
 
