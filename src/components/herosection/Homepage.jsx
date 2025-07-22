@@ -8,7 +8,7 @@ function Homepage() {
     <>
       <div className="relative flex flex-col justify-center md:mt-0 mt-0 lg:mt-25 mx-0 md:mx-0 lg:mx-[100px] h-[88vh] md:rounded-[0px] rounded-[0px] lg:rounded-lg overflow-hidden">
         
-        {/* Video Background */}
+        
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
           src="/video2.mp4"
@@ -18,10 +18,10 @@ function Homepage() {
           playsInline
         />
 
-        {/* Overlay for dark tint */}
+        
         <div className="absolute inset-0 bg-black/30 z-10" />
 
-        {/* Content on top */}
+    
         <div className="relative z-20 px-6 md:px-20 text-white font-mono flex flex-col justify-center h-full">
           <div className="text-4xl md:text-6xl lg:text-7xl">Enjoy Your</div>
           <div className="text-5xl md:text-7xl lg:text-8xl font-bold">Delicious</div>
@@ -35,10 +35,7 @@ function Homepage() {
           </div>
         </div>
       </div>
-
-      {/* Other sections */}
-      <Categories />
-      <Popularitem />
+      
     </>
   );
 }

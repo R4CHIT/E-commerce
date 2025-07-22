@@ -1,8 +1,10 @@
-const productDataApi=async(setProduct)=>{
+const productDataApi=async(setProduct,setmainData)=>{
     const res = await fetch('https://dummyjson.com/recipes')
     const responce = await res.json();
     if(res.status == 200 ){
         setProduct(responce.recipes)
+        setmainData(responce.recipes)
+        
     }
     // const data =[
     //     {

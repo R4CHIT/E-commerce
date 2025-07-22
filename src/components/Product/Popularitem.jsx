@@ -3,13 +3,7 @@ import React, { useEffect, useState } from "react";
 import productDataApi from "../Api/productData.api";
 import ProductModal from "./Modal/ProductModal";
 import Card from "./component/Card";
-function Popularitem() {
-  
-  const [productData, setProductData] = useState([]);
-
-  useEffect(() => {
-    productDataApi(setProductData);
-  }, []);
+function Popularitem({productData,maindata}) {
   return (
     <>
       

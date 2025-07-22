@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
 import InputDetails from "./InputDetails";
 import OrangeButton from "../Button/OrangeButton";
+import { useNavigate } from "react-router";
 
 const UserDetail = () => {
+  const navigate = useNavigate()
  const [error, setError] = useState(0);
 const name = useRef();
 const address = useRef();
@@ -16,7 +18,8 @@ const handleClick = () => {
   const nameVal = name.current?.value.trim();
   const phoneVal = phone.current?.value.trim();
   const addressVal = address.current?.value.trim();
-
+  localStorage.removeItem('cart')
+  navigate('/')
   if (!nameRegex.test(nameVal)) {
     setError(1);
   } else if (!phoneRegex.test(phoneVal)) {
@@ -26,6 +29,7 @@ const handleClick = () => {
   } else {
     setError(0);
   }
+  
 };
 
   
@@ -49,7 +53,7 @@ const handleClick = () => {
         error={error==3 && true}
         ref={address}
       />
-      <div className="relative top-4 flex justify-center">
+      <div className="relative top-4 flex justify-center md:mb-1 mb-5">
         <OrangeButton title={'Proceed'} onClick={()=>handleClick()}/>
       </div>
     </div>

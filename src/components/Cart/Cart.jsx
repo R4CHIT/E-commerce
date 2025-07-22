@@ -15,12 +15,18 @@ const Cart = () => {
       <Navbar />
 
       {item.length === 0 ? (
-        <div className="flex justify-center items-center h-[60vh] text-3xl md:text-5xl text-pink-500">
+       <div className="flex flex-col justify-center items-center">
+         <div className="flex justify-center items-center h-[60vh] text-3xl md:text-5xl text-pink-500">
           No item in Cart
         </div>
+        <div>
+          <OrangeButton className='p-4 text-4xl bg-amber-500 rounded-md text-white' title={"Buy Now"}/>
+        </div>
+       </div>
+
       ) : (
         <div className="flex flex-col lg:flex-row gap-6 mt-10">
-          {/* Left Side: Cart Items */}
+         
           <div className="w-full lg:w-[60%] flex flex-col gap-4">
             {item.map((item, index) => (
               <Cartcard
@@ -31,7 +37,7 @@ const Cart = () => {
             ))}
           </div>
 
-          {/* Right Side: Order Summary */}
+          
           <div className="w-full lg:w-[40%] bg-white p-6 rounded-md shadow-md border h-fit sticky top-24">
   <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">
     Order Summary 🧾
