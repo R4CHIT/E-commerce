@@ -15,10 +15,14 @@ const App = () => {
   return (
     <div className=''>
       
-      <Navbar />
+      <Navbar maindata={maindata} setProductData={setProductData}/>
       <Homepage />
+      <div id='product'>
       <Categories setProductData={setProductData} maindata={maindata} />
-      <Popularitem productData={productData} maindata={maindata}/>
+      </div>
+      <div >
+      <Popularitem  productData={productData} maindata={maindata}/>
+      </div>
       <Footer />
     </div>
   )

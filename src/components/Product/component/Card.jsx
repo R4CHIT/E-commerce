@@ -32,6 +32,7 @@ const Card = ({ item }) => {
       <div
         className="bg-white rounded-2xl min-w-[80vw] md:min-w-[20vw] min-h-90 overflow-hidden shadow-md hover:shadow-2xl transition duration-300 relative group"
         onClick={() => setShowModal(true)}
+        
       >
         <div className="relative">
           <img

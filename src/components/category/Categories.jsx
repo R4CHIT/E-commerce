@@ -42,7 +42,7 @@ function Categories({ setProductData, maindata }) {
           {Category.map((element, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center gap-2 "
+              className="flex flex-col items-center justify-center m///gap-2 "
               onClick={() => setCategories(element.title)}
             >
               <img

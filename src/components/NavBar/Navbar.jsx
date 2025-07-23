@@ -4,8 +4,9 @@ import { FiShoppingCart } from "react-icons/fi";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoCloseSharp } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router";
+import Searchbar from "./Searchbar";
 
-const Navbar = () => {
+const Navbar = ({setProductData,maindata}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   let count = 0;
   if (localStorage.getItem("cart") == null) {
@@ -40,14 +41,7 @@ const Navbar = () => {
         </div> */}
 
         <div className="flex lg:flex items-center gap-6">
-          <div className="flex items-center bg-gray-100 rounded-2xl text-black h-10 w-60 justify-between px-2">
-            <input
-              type="text"
-              className="text-[15px] outline-none bg-transparent w-full px-2"
-              placeholder="Search here"
-            />
-            <IoIosSearch className="text-xl" />
-          </div>
+          <Searchbar setProductData={setProductData} maindata={maindata}/>
           <div className="relative" onClick={() => navigate("/cart")}>
             <FiShoppingCart className="text-3xl" />
             <span className="absolute text-white bg-blue-600 h-5 w-5 rounded-2xl text-[12px] flex justify-center items-center bottom-4 left-5">

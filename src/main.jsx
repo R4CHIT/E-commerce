@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { BrowserRouter,createBrowserRouter,RouterProvider } from 'react-router'
 import Cart from './components/Cart/Cart.jsx'
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     path: "/cart",
     element: <div><Cart/></div>,
   },
+  
 ]);
 
 
