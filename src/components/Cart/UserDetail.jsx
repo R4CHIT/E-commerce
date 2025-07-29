@@ -31,8 +31,6 @@ const handleClick = () => {
   }
   
 };
-
-  
   return (
     <div>
       <InputDetails 

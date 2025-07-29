@@ -8,22 +8,23 @@ const Searchbar = ({ setProductData, maindata }) => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const handleSearch = () => {
-    const element = document.getElementById('product'); // target element's ID
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
+    const element = document.getElementById("product");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
- 
+  if (location.pathname != "/cart") {
     useEffect(() => {
-       
-      let temp = maindata.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
+      let temp = maindata.filter(
+        (item) =>
+          item.name.toLowerCase().includes(search.toLowerCase()) ||
+          item.mealType[0].toLowerCase().includes(search.toLowerCase())
       );
       setProductData(temp);
       console.log(search);
-    
-    }, [search,location.pathname]);
-  
+    }, [search, location.pathname]);
+  }
+
   return (
     <div>
       <div className="flex items-center bg-gray-100 rounded-2xl text-black h-10 w-60 justify-between px-2">
