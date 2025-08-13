@@ -6,22 +6,24 @@ import Categories from './components/category/Categories'
 import Popularitem from './components/Product/Popularitem'
 import productDataApi from './components/Api/productData.api'
 import { useState,useEffect } from 'react'
+import { useOutletContext } from 'react-router'
+
 const App = () => {
-  const [productData, setProductData] = useState([]);
-  const [maindata,setmainData] = useState([])
-  useEffect(() => {
-    productDataApi(setProductData,setmainData);
-  }, []);
+  
+  const maindata = useOutletContext()
+  const [productData, setProductData] = useState(maindata);
+  useEffect(()=>{
+    setProductData(maindata)
+  },[maindata])
   return (
     <div className=''>
-      
-      <Navbar maindata={maindata} setProductData={setProductData}/>
+      <Navbar setProductData={setProductData}/>
       <Homepage />
       <div id='product'>
       <Categories setProductData={setProductData} maindata={maindata} />
       </div>
       <div >
-      <Popularitem  productData={productData} maindata={maindata}/>
+      <Popularitem  productData={productData} setProductData={setProductData}/>
       </div>
       <Footer />
     </div>

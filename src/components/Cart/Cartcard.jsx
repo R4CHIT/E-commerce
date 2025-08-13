@@ -4,77 +4,91 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import removeFromCart from "../localstorage/removeFromCart";
 import Quantity from "./Quantity";
-import OrangeButton from "../Button/OrangeButton";
 
-const Cartcard = ({ product, setItem }) => {
-  const [favbool, setfavbool] = useState(false);
+const Cartcard = ({ product, setItem, selected, setSelected,checked,setChecked }) => {
+  const [fav, setFav] = useState(false);
+  const [item, setItemState] = useState(product);
   
-  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    setItems(product);
+    setItemState(product);
   }, [product]);
 
-  const toggleFavorite = () => {
-    if (favbool == true) {
-      setfavbool(false);
-    } else {
-      setfavbool(true);
-    }
-  };
-  
-  const [quantity, setquantity] = useState(items?.quantity);
-  
+  const toggleFavorite = () => setFav(prev => !prev);
+
+  const handleCheckbox = () => {
+  setChecked(prev => !prev);
+  if (!checked) {
+    
+    setSelected(prev => [...(prev || []), item]);
+  } else {
+    
+    setSelected(prev => (prev || []).filter(i => i.id !== item.id));
+  }
+};
+
+
   return (
-    <div className="w-full flex justify-center">
-      <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl w-[90vw] sm:w-[70vw] flex flex-col sm:flex-row overflow-hidden min-h-[150px] sm:max-h-[150px] border border-gray-200">
-        <div className="w-full sm:w-1/3 flex justify-center items-center p-4">
-          <img
-            src={items?.image}
-            alt={items?.name}
-            className="w-32 h-32 sm:w-44 sm:h-44 object-cover rounded-xl"
+    <div className="w-full flex justify-center my-2">
+      <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl w-[90vw] sm:w-[70vw] flex items-center overflow-hidden border border-gray-200">
+
+        <div className="p-4">
+          <input 
+            type="checkbox" 
+            className="w-5 h-5 cursor-pointer" 
+            checked={checked} 
+            onChange={handleCheckbox} 
           />
         </div>
 
-        <div className="p-5 flex flex-col justify-between w-full sm:w-2/3 gap-4">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <div className="flex-1 min-w-0">
-              <h2 className="text-lg sm:text-xl font-bold text-gray-800 truncate">{items?.name}</h2>
-              <p className="text-sm text-gray-500 mt-1">{items?.mealType}</p>
-            </div>
+        
+        <div className="flex justify-center items-center p-4">
+          <img
+            src={item?.image}
+            alt={item?.productName}
+            className="w-28 h-28 sm:w-36 sm:h-36 object-cover rounded-xl"
+          />
+        </div>
 
-            <div className="flex items-center sm:items-end flex-col gap-2 sm:gap-1 flex-shrink-0">
-              <span className="text-lg sm:text-xl font-bold text-[#f57125]">
-                ${items?.caloriesPerServing}
-              </span>
-              <div className="flex gap-3 text-lg sm:text-xl text-gray-700">
-                {favbool ? (
-                  <FaHeart
-                    onClick={() => {
-                      toggleFavorite();
-                    }}
-                    className="text-red-400 drop-shadow cursor-pointer"
-                  />
-                ) : (
-                  <GrFavorite
-                    onClick={() => {
-                      toggleFavorite();
-                    }}
-                    className="text-black drop-shadow cursor-pointer"
-                  />
-                )}
-                <MdDeleteForever
-                  onClick={() => removeFromCart(items, setItem)}
-                  className="cursor-pointer hover:text-red-500 transition"
+        
+        <div className="flex-1 p-4 flex flex-col justify-between gap-2">
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-gray-800 truncate">
+              {item?.productName}
+            </h2>
+            <p className="text-sm text-gray-500">{item?.category}</p>
+            <p className="text-sm text-green-600">
+              {item?.availableStock === 0
+                ? "Out Of Stock"
+                : `Available Stock: ${item?.availableStock || 0}`}
+            </p>
+          </div>
+
+          <div className="flex justify-between items-center mt-2">
+            <span className="text-lg sm:text-xl font-bold text-[#f57125]">
+              ${item?.price}
+            </span>
+
+            <div className="flex gap-3 text-lg sm:text-xl text-gray-700">
+              {fav ? (
+                <FaHeart
+                  onClick={toggleFavorite}
+                  className="text-red-400 cursor-pointer"
                 />
-              </div>
+              ) : (
+                <GrFavorite
+                  onClick={toggleFavorite}
+                  className="text-black cursor-pointer"
+                />
+              )}
+              <MdDeleteForever
+                onClick={() => removeFromCart(item, setItem)}
+                className="cursor-pointer hover:text-red-500 transition"
+              />
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <Quantity data={items} quantity={items?.quantity} setItem={setItem}/> 
-            <OrangeButton title={'Order now'}/>
-          </div>
+          <Quantity data={item} quantity={item?.quantity} setItem={setItem} />
         </div>
       </div>
     </div>

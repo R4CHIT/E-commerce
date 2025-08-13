@@ -50,12 +50,12 @@ const ProductModal = ({ data, setShowModal, showModal }) => {
         <div className="w-full md:w-1/2 p-6 flex flex-col justify-between">
           <div>
             <div className="text-sm text-gray-400 uppercase tracking-widest mb-2 text-center md:text-left">
-              {data?.mealType}
+              {data?.category}
             </div>
 
             <div className="flex justify-between items-start gap-2 mb-4">
               <h2 className="text-xl font-bold text-gray-800 dark:text-white">
-                {data?.name}
+                {data?.productName}
               </h2>
               <div className="flex gap-[2px] text-yellow-400 text-lg">
                 {[...Array(Math.floor(data?.rating) || 0)].map((_, idx) => (
@@ -72,7 +72,7 @@ const ProductModal = ({ data, setShowModal, showModal }) => {
 
           <div className="flex justify-between items-center mt-4">
             <span className="text-2xl font-extrabold text-[#fa7516]">
-              ${data?.caloriesPerServing}
+              ${data?.price}
             </span>
             {cart ? (
               <button

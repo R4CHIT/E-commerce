@@ -1,8 +1,20 @@
 import React from "react";
 import UserDetail from "../UserDetail";
 import totalAmount from "../../CustomFunction/totalAmount";
+import OrangeButton from "../../Button/OrangeButton";
+import generateOrder from "../../Api/Order/generateOrder";
+import generateCartItem from "../../CustomFunction/generateCartItem";
 
 const CheckoutModal = ({ visible, setVisible, product }) => {
+  const handleOrder=async()=>{
+    
+    const orderDetail = {
+      items :generateCartItem(product),
+      totalAmount:totalAmount(product)
+    }
+    console.log(orderDetail)
+    await generateOrder(orderDetail)
+  }
   return (
     <div
       className="fixed inset-0 z-50 bg-black/10 backdrop-blur-sm flex items-center justify-center px-2 sm:px-4"
@@ -24,9 +36,9 @@ const CheckoutModal = ({ visible, setVisible, product }) => {
        
         {product.map((item, index) => (
           <div className="flex justify-between rounded-md text-sm sm:text-base bg-gray-200 p-2" key={index}>
-            <div className="min-w-50">{item?.name}</div>
+            <div className="min-w-50">{item?.productName}</div>
             <div className="text-center">x{item?.quantity}</div>
-            <div className="text-end">{item?.caloriesPerServing}</div>
+            <div className="text-end">{item?.price}</div>
           </div>
         ))}
 
@@ -37,7 +49,7 @@ const CheckoutModal = ({ visible, setVisible, product }) => {
         </div>
 
         
-        <UserDetail />
+        <div className="flex flex-col items-center"><OrangeButton title={'Proceed'} onClick={()=>handleOrder()}/></div>
       </div>
     </div>
   );

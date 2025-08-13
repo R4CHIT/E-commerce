@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, useOutletContext } from "react-router";
 import { useLocation } from "react-router";
 
-const Searchbar = ({ setProductData, maindata }) => {
+const Searchbar = ({ setProductData }) => {
   const location = useLocation();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const maindata = useOutletContext()
   const handleSearch = () => {
+    
     const element = document.getElementById("product");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-  if (location.pathname != "/cart") {
+  if (location.pathname != "/cart" && location.pathname != "/setting" && location.pathname != '/addProduct' && location.pathname != "/dashboard") {
     useEffect(() => {
       let temp = maindata.filter(
         (item) =>
-          item.name.toLowerCase().includes(search.toLowerCase()) ||
-          item.mealType[0].toLowerCase().includes(search.toLowerCase())
+          item.productName.toLowerCase().includes(search.toLowerCase()) ||
+          item.category.toLowerCase().includes(search.toLowerCase())
       );
       setProductData(temp);
-      console.log(search);
     }, [search, location.pathname]);
   }
-
   return (
     <div>
       <div className="flex items-center bg-gray-100 rounded-2xl text-black h-10 w-60 justify-between px-2">

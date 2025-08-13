@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import Signup from './Signup/Signup';
 import Login from './login/Login';
+
 const MainAuth = () => {
-    const [screen,setScreen] = useState(true);
+  const [screen, setScreen] = useState(true);
+
   return (
-    <div className='bg-pink-100 flex h-[100vh] w-[100vw] justify-center items-center'>
-      <div className='w-110 border-slate-400 rounded-xl shadow-lg shadow-black/50 bg-white h-110'>
+    <div className="bg-gradient-to-br from-pink-400 via-pink-200 to-yellow-200 flex min-h-screen w-full justify-center items-center p-6">
+  {/* your content */}
+
+
+      <div className="max-w-md w-full bg-white/50  rounded-2xl shadow-xl shadow-black/30 p-8">
         {screen ? (
-            <Signup />
-        ):(
-            <Login />
+          <Signup setScreen={setScreen} />
+        ) : (
+          <Login setScreen={setScreen} />
         )}
       </div>
     </div>

@@ -5,10 +5,17 @@ import App from './App.jsx'
 import { BrowserRouter,createBrowserRouter,RouterProvider } from 'react-router'
 import Cart from './components/Cart/Cart.jsx'
 import MainAuth from './components/Authentication/MainAuth.jsx'
-
-
+import DashboardMain from './components/Dashboard/DashboardMain.jsx'
+import Setting from './components/Setting/Setting.jsx'
+import Home from './Home.jsx'
+import AddProduct from './components/AddProduct/AddProduct.jsx'
 const router = createBrowserRouter([
+  
   {
+    path:'/',
+    element:<Home />,
+    children:[
+      {
     path: "/",
     element: <div><App /></div>,
   },
@@ -16,9 +23,15 @@ const router = createBrowserRouter([
     path: "/cart",
     element: <div><Cart/></div>,
   },
+  
   {
-    path:"auth",
-     element: <div><MainAuth /></div>,
+    path: "/dashboard",
+    element: <DashboardMain />,
+  },
+  { path: "/setting", element: <Setting /> },
+  { path: "/addProduct", element: <AddProduct /> },
+
+    ]
   }
   
 ]);

@@ -11,7 +11,7 @@ function Homepage() {
         
         <video
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          src="/video2.mp4"
+          src="/hero.mp4"
           autoPlay
           loop
           muted
@@ -28,7 +28,7 @@ function Homepage() {
           <div className="text-4xl md:text-5xl lg:text-6xl font-bold">food</div>
 
           <div className="mt-6">
-            <button className="bg-orange-400 text-white px-6 py-2 md:px-8 md:py-3 rounded-full flex items-center gap-2 text-lg md:text-xl hover:scale-105 transition-transform duration-300">
+            <button className="bg-orange-400 text-white px-6 py-2 md:px-8 md:py-3 rounded-full flex items-center gap-2 text-lg md:text-xl hover:scale-105 transition-transform duration-300 cursor-pointer">
               <span>Order Now</span>
               <CiDeliveryTruck className="text-2xl" />
             </button>

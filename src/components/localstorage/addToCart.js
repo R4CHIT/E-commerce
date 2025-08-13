@@ -15,7 +15,7 @@ const addToCart = (productData)=>{
 
         
         let tempArr = JSON.parse(localStorage.getItem('cart'));
-        let tempArray = tempArr.filter((item)=>item.id==productData.id)
+        let tempArray = tempArr.filter((item)=>item._id==productData._id)
         if (tempArray != 0 ){
             addQuantiy(productData)
             return;
