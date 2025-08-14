@@ -12,34 +12,41 @@ const AddFeature = ({ productDetail, setProductDetail }) => {
     });
     setFeatures("");
   };
-  const handleRemoveFeature = ()=>{
-    setProductDetail({
-      ...productDetail,
-      features: [ features.trim()],
-    });
-    setFeatures("");
-  }
-  return (
-    <div className="my-2 space-y-1">
-      <div className="text-sm font-medium text-gray-700">Features:</div>
 
-      <div className="text-sm">
-        Features:{" "}
-        {productDetail.features.map((item, index) => (
-          <span key={index}>{item}, </span>
-        ))}
+  const handleRemoveFeature = () => {
+    if (!features.trim()) {
+      // Remove the last feature if input is empty
+      setProductDetail({
+        ...productDetail,
+        features: productDetail.features.slice(0, -1),
+      });
+    } else {
+      // Remove the feature typed in input
+      setProductDetail({
+        ...productDetail,
+        features: productDetail.features.filter((f) => f !== features.trim()),
+      });
+    }
+    setFeatures("");
+  };
+
+  return (
+    <div className="my-2">
+      <div className="text-sm font-medium text-gray-700 mb-1">Features:</div>
+      <div className="text-sm mb-2">
+        {productDetail.features.join(", ")}
       </div>
 
-      <input
-        type="text"
-        value={features}
-        onChange={(e) => setFeatures(e.target.value)}
-        className="border outline-none rounded-md p-1 w-full"
-      />
-
-      <div className="flex w-100 gap-5">
-        <OrangeButton title="Add" onClick={handleAddFeature} />
-      <OrangeButton title="Remove" onClick={handleRemoveFeature} />
+      <div className="flex md:flex-row flex-col  gap-2 md:items-center">
+        <input
+          type="text"
+          value={features}
+          onChange={(e) => setFeatures(e.target.value)}
+          className="border outline-none rounded-md p-2 flex-1"
+          placeholder="Add a feature"
+        />
+        <div className="flex gap-5 md:gap-2"><OrangeButton title="Add" onClick={handleAddFeature} />
+        <OrangeButton title="Remove" onClick={handleRemoveFeature} /></div>
       </div>
     </div>
   );

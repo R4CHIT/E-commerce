@@ -14,15 +14,15 @@ const ProductInputField = ({
   };
 
   return (
-    <div>
-      <div className="font-medium text-sm text-gray-600 mb-0.5">{label}:</div>
+    <div className="flex flex-col gap-1">
+      <label className="font-medium text-sm text-gray-600">{label}:</label>
       <input
         className="outline-none p-1 border rounded-sm text-sm w-full"
         value={productDetail[name] || ""}
         onChange={handleChange}
       />
       {productDetail[name] === "" && (
-        <p className="text-red-500 text-[10px]">Please provide an input</p>
+        <span className="text-red-500 text-[10px]">Please provide an input</span>
       )}
     </div>
   );

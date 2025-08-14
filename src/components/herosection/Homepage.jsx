@@ -1,42 +1,41 @@
 import React from "react";
-import { CiDeliveryTruck } from "react-icons/ci";
-import Categories from "../category/Categories";
-import Popularitem from "../Product/Popularitem";
+import { CiShoppingCart } from "react-icons/ci";
 
 function Homepage() {
   return (
-    <>
-      <div className="relative flex flex-col justify-center md:mt-0 mt-0 lg:mt-25 mx-0 md:mx-0 lg:mx-[100px] h-[88vh] md:rounded-[0px] rounded-[0px] lg:rounded-lg overflow-hidden">
-        
-        
-        <video
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          src="/hero.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
+    <div className="relative flex flex-col justify-center md:mt-0 mt-0 lg:mt-25 mx-0 md:mx-0 lg:mx-[100px] h-[88vh] md:rounded-[0px] rounded-[0px] lg:rounded-lg overflow-hidden">
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        src="/hero.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
-        
-        <div className="absolute inset-0 bg-black/30 z-10" />
+      <div className="absolute inset-0 bg-black/40 z-10" />
 
-    
-        <div className="relative z-20 px-6 md:px-20 text-white font-mono flex flex-col justify-center h-full">
-          <div className="text-4xl md:text-6xl lg:text-7xl">Enjoy Your</div>
-          <div className="text-5xl md:text-7xl lg:text-8xl font-bold">Delicious</div>
-          <div className="text-4xl md:text-5xl lg:text-6xl font-bold">food</div>
+      <div className="relative z-20 px-6 md:px-10 text-white font-mono flex flex-col justify-center h-full items-start text-left max-w-4xl">
+  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-2 drop-shadow-2xl leading-tight">
+    <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+      Upgrade Your
+    </span>
+  </h1>
+  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 drop-shadow-2xl leading-tight">
+    <span>Mobile Life</span>
+  </h1>
+  <p className="text-lg md:text-xl lg:text-2xl mb-6 text-gray-200 drop-shadow-lg leading-relaxed font-light max-w-3xl">
+    Explore the latest phones from top brands with 
+    <span className="text-orange-300 font-medium"> unbeatable deals</span>.
+  </p>
 
-          <div className="mt-6">
-            <button className="bg-orange-400 text-white px-6 py-2 md:px-8 md:py-3 rounded-full flex items-center gap-2 text-lg md:text-xl hover:scale-105 transition-transform duration-300 cursor-pointer">
-              <span>Order Now</span>
-              <CiDeliveryTruck className="text-2xl" />
-            </button>
-          </div>
-        </div>
-      </div>
-      
-    </>
+  <button className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-8 py-3 md:px-10 md:py-4 flex rounded-full items-center gap-3 text-lg md:text-xl font-bold hover:scale-105 transition-all duration-300 cursor-pointer shadow-2xl shadow-orange-500/25">
+    <span>Shop Now</span>
+    <CiShoppingCart className="text-2xl md:text-3xl" />
+  </button>
+</div>
+
+    </div>
   );
 }
 
