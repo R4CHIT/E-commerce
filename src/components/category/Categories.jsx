@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useOutletContext } from "react-router";
 import { FaApple, FaAndroid } from "react-icons/fa";
-import { SiSamsung, SiXiaomi } from "react-icons/si";
+import { SiSamsung, SiXiaomi, SiVivo, SiNokia } from "react-icons/si";
 import { GiSmartphone } from "react-icons/gi";
-import { SiVivo } from "react-icons/si";
-import { SiNokia } from "react-icons/si";
+
 function Categories({ setProductData }) {
   const Category = [
     { icon: <GiSmartphone />, title: "All" },
@@ -20,7 +19,6 @@ function Categories({ setProductData }) {
 
   const setCategories = (title) => {
     setSelected(title);
-
     if (title === "All") {
       setProductData(maindata);
     } else {
@@ -32,15 +30,15 @@ function Categories({ setProductData }) {
   };
 
   return (
-    <div className="px-25 py-10 border-b border-gray-200">
-      <h2 className="text-2xl font-bold mb-4">Brands</h2>
+    <div className="md:px-20 px-4 py-10 border-b border-gray-200">
+      <h2 className="text-2xl font-bold mb-6">Brands</h2>
 
-      {/* Horizontal scroll for mobile */}
-      <div className="flex justify-around overflow-x-auto scrollbar-hide">
+      {/* Responsive category grid */}
+      <div className="flex flex-wrap justify-center gap-6 sm:gap-10">
         {Category.map((element, index) => (
           <div
             key={index}
-            className="flex flex-col items-center flex-shrink-0 cursor-pointer"
+            className="flex flex-col items-center cursor-pointer w-20 sm:w-24"
             onClick={() => setCategories(element.title)}
           >
             <div

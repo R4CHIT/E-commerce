@@ -1,14 +1,19 @@
 import SecureFetch from "../Auth/apiConfiguration";
 import mainEndPiont from "../mainEndPiont";
-const getOrder = async (setOrder) => {
+const updateOrderStatus = async (status,id) => {
+    const data = {
+        id:id,
+        status:status
+    }
   try {
-    const request = await SecureFetch(mainEndPiont+"order", "GET", {
+    const request = await SecureFetch(mainEndPiont+"order", "PATCH", {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
-    });
+    },data
+);
     const response = await request.json()
     if (request.status == 200) {
-        setOrder(response.data)
+        window.location.href = '/dashboard'
     } else if (request.status == 502) {
     } else {
     }
@@ -17,4 +22,4 @@ const getOrder = async (setOrder) => {
   }
 };
 
-export default getOrder;
+export default updateOrderStatus;

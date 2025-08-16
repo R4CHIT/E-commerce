@@ -2,8 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import removeQuantity from '../localstorage/removeQuantity';
 import addQuantiy from '../localstorage/addQuantiy';
-const Quantity = ({quantity,data,setItem}) => {
-   
+const Quantity = ({quantity,data,setItemState,setSelected,selected}) => {
   return (
     <div>
       <div className="flex items-center gap-3">
@@ -11,7 +10,7 @@ const Quantity = ({quantity,data,setItem}) => {
                 className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
                 onClick={(e) => {
                   e.stopPropagation();
-                    removeQuantity(data,setItem);
+                    removeQuantity(data,setItemState,setSelected,selected);
                 }}
               >
                 -
@@ -25,7 +24,7 @@ const Quantity = ({quantity,data,setItem}) => {
                 className="w-10 h-10 bg-gray-200 text-gray-800 rounded-md text-xl flex items-center justify-center hover:bg-gray-300 transition"
                 onClick={(e) => {
                   e.stopPropagation();
-                  addQuantiy(data,setItem);
+                  addQuantiy(data,setItemState,setSelected,selected);
                 }}
               >
                 +

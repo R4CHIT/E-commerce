@@ -14,27 +14,26 @@ function Homepage() {
       />
 
       <div className="absolute inset-0 bg-black/40 z-10" />
+      <div className="relative z-20 px-6 md:px-10 text-white font-mono flex flex-col justify-center h-full mt-5 items-start text-left max-w-4xl">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-2 drop-shadow-2xl leading-tight">
+          <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+            Upgrade Your
+          </span>
+        </h1>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 drop-shadow-2xl leading-tight">
+          <span>Mobile Life</span>
+        </h1>
+        <p className="text-lg md:text-xl lg:text-2xl mb-6 text-gray-200 drop-shadow-lg leading-relaxed font-light max-w-3xl">
+          Explore the latest phones from top brands with
+          <span className="text-orange-300 font-medium"> unbeatable deals</span>
+          .
+        </p>
 
-      <div className="relative z-20 px-6 md:px-10 text-white font-mono flex flex-col justify-center h-full items-start text-left max-w-4xl">
-  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-2 drop-shadow-2xl leading-tight">
-    <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-      Upgrade Your
-    </span>
-  </h1>
-  <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-4 drop-shadow-2xl leading-tight">
-    <span>Mobile Life</span>
-  </h1>
-  <p className="text-lg md:text-xl lg:text-2xl mb-6 text-gray-200 drop-shadow-lg leading-relaxed font-light max-w-3xl">
-    Explore the latest phones from top brands with 
-    <span className="text-orange-300 font-medium"> unbeatable deals</span>.
-  </p>
-
-  <button className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-8 py-3 md:px-10 md:py-4 flex rounded-full items-center gap-3 text-lg md:text-xl font-bold hover:scale-105 transition-all duration-300 cursor-pointer shadow-2xl shadow-orange-500/25">
-    <span>Shop Now</span>
-    <CiShoppingCart className="text-2xl md:text-3xl" />
-  </button>
-</div>
-
+        <button className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-8 py-3 md:px-10 md:py-4 flex rounded-full items-center gap-3 text-lg md:text-xl font-bold hover:scale-105 transition-all duration-300 cursor-pointer shadow-2xl shadow-orange-500/25">
+          <span>Shop Now</span>
+          <CiShoppingCart className="text-2xl md:text-3xl" />
+        </button>
+      </div>
     </div>
   );
 }

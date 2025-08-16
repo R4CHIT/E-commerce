@@ -1,57 +1,107 @@
-import React from "react";
-import { LuDot } from "react-icons/lu";
+import React, { useState } from "react";
+import OrderStatusModel from "./modal/OrderStatusModel";
 
 const OrderCard = ({ data }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [status, setStatus] = useState(data.status || "pending");
+
+  const statusColors = {
+    pending: "bg-yellow-100 text-yellow-800",
+    completed: "bg-green-100 text-green-700",
+    cancelled: "bg-red-100 text-red-700",
+    "in-progress": "bg-blue-100 text-blue-700",
+  };
+
   return (
-    <div className="border rounded-md bg-sky-100 p-4 w-60 max-h-[280px] text-gray-700 text-xs font-medium shadow-sm flex flex-col">
-      <div className="flex flex-col items-center gap-3">
-        <div className="text-sm font-semibold italic text-gray-900">
-          Customer Details
+    <div className="w-full bg-white border rounded-xl shadow-sm p-6 flex flex-col gap-6 transition-all hover:shadow-md">
+      
+      {/* Card Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-3">
+        <h3 className="text-sm font-semibold text-gray-900">
+          Order #{data._id?.slice(-10) || "N/A"}
+        </h3>
+        <span className="text-xs text-gray-500 mt-1 sm:mt-0">
+        {new Date(data.createdAt).toLocaleDateString()}
+
+        </span>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex flex-col md:flex-row gap-6">
+        
+        {/* Left Section: Customer + Delivery */}
+        <div className="w-full md:w-1/3 flex flex-col justify-between">
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">Customer</h4>
+            <div className="flex justify-between text-xs font-medium text-gray-700">
+              <p>{data.coustomerName}</p>
+              <p>{data.contactNumber}</p>
+            </div>
+            <div className="flex justify-between text-xs text-gray-600 mt-1">
+              <p>{data.city}</p>
+              <p>{data.street}</p>
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <h4 className="text-xs font-semibold text-gray-800">Delivery</h4>
+            <p className="text-xs text-gray-600">{data.deliveryDescription}</p>
+          </div>
+
+          {/* Status Section */}
+          <div className="mt-4 flex flex-col gap-3">
+            <p className="text-xs font-semibold">
+              Status:{" "}
+              <span
+                className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${statusColors[status] || "bg-gray-100 text-gray-600"}`}
+              >
+                {status}
+              </span>
+            </p>
+            {data.status !== 'completed' && (
+              <button
+              onClick={() => setShowModal(true)}
+              className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600 text-xs"
+            >
+              Change Status
+            </button>
+            )}
+          </div>
         </div>
-        <div className="flex justify-between gap-7 w-full font-medium text-xs">
-          <p>{data.cName}</p>
-          <p>{data.contactNumber}</p>
-        </div>
-        <div className="flex justify-between w-full text-xs">
-          <p>{data.city}</p>
-          <p>{data.street}</p>
-        </div>
-        <div className="w-full mt-1 text-xs">
-          <p className="font-semibold">Delivery Details:</p>
-          <p>{data.deliveryDescription}</p>
+
+        {/* Right Section: Items */}
+        <div className="flex-1 border-l pl-5">
+          <h4 className="text-sm font-semibold text-gray-900 mb-2">Items</h4>
+          <div className="flex justify-between text-xs font-semibold border-b pb-1">
+            <span>Name</span>
+            <span>Qty</span>
+          </div>
+          <div className="max-h-40 overflow-y-auto space-y-2 mt-2 pr-2">
+            {data.items.map((item, idx) => (
+              <div key={idx} className="flex justify-between text-xs text-gray-700">
+                <span>{item.itemName}</span>
+                <span>{item.quantity}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Total */}
+          <div className="mt-3 flex justify-between text-xs font-semibold text-gray-800">
+            <span>Total Amount</span>
+            <span className="text-blue-600">Rs. {data.totalAmount}</span>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col items-center mt-5 gap-3 w-full flex-1 overflow-hidden">
-        <div className="text-sm font-semibold italic text-gray-900">Items</div>
-        <div className="flex justify-between w-full font-semibold text-xs">
-          <p>Total Amount =</p>
-          <p>{data.totalAmount}</p>
-        </div>
-        <div className="w-full space-y-1 overflow-y-auto max-h-36 pr-2">
-          <div
-              className="flex justify-between items-center text-xs"
-            >
-              
-              <div className="flex gap-2 items-center text-gray-800">
-                <p>Name</p>
-              </div>
-              <div>Quantity</div>
-            </div>
-          {data.items.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex justify-between items-center text-xs"
-            >
-              
-              <div className="flex gap-2 items-center text-gray-800">
-                <p>{item.itemName}</p>
-              </div>
-              <div>{item.quantity}</div>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Status Modal */}
+      {showModal && (
+        <OrderStatusModel
+          status={status}
+          setShowModal={setShowModal}
+          setStatus={setStatus}
+          id={data._id}
+        />
+      )}
     </div>
   );
 };

@@ -37,7 +37,7 @@ const Card = ({ item }) => {
         className="bg-white rounded-2xl w-full md:w-[20vw] min-h-[350px] shadow-md hover:shadow-xl transition duration-300 relative overflow-hidden group border border-gray-100"
         onClick={() => setShowModal(true)}
       >
-        {/* Stock Badge */}
+    
         <div className="absolute z-10 top-3 left-3 bg-green-500 text-white text-xs px-3 py-1 rounded-full shadow-md">
           {item?.availableStock > 0
             ? `${item?.availableStock} in stock`
@@ -62,7 +62,6 @@ const Card = ({ item }) => {
           )}
         </div>
 
-        {/* Product Info */}
         <div className="p-4 flex flex-col justify-between h-[calc(100%-240px)]">
           <div>
             <p className="text-center text-gray-400 text-sm mb-1">
@@ -85,7 +84,7 @@ const Card = ({ item }) => {
             </div>
           </div>
 
-          {/* Price & Button */}
+          
           <div className="flex justify-between items-center mt-4">
             <span className="text-xl font-bold text-[#fa7516]">
               ${item?.price}

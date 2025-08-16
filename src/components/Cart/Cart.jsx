@@ -11,15 +11,16 @@ const Cart = () => {
   const [item, setItem] = useState(data ? JSON.parse(data) : []);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState([]);
-  const [checked, setChecked] = useState(false);
+  const [checkedall, setCheckedall] = useState(false);
 
-  // Toggle Select All
+  
   const toggleSelectAll = () => {
     if (selected.length === item.length) {
-      setSelected([]); // deselect all
+      setSelected([]); 
+      setCheckedall(false)
     } else {
-      setSelected([...item]); // select all
-      setChecked(true)
+      setSelected([...item]); 
+      setCheckedall(true)
     }
   };
 
@@ -31,8 +32,6 @@ const Cart = () => {
         <EmptyCart />
       ) : (
         <div className="flex flex-col lg:flex-row gap-6 mt-10">
-
-          {/* Cart Items Section */}
           <div className="w-full lg:w-[60%] flex flex-col gap-4">
             <div className="flex justify-between items-center mb-2">
               <h2 className="text-2xl font-semibold">My Cart</h2>
@@ -44,20 +43,18 @@ const Cart = () => {
               </button>
             </div>
 
-            {item.map((item, index) => (
-              <Cartcard
-              checked={checked}
-              setChecked={setChecked}
-                setSelected={setSelected}
-                selected={selected}
-                key={index}
-                setItem={setItem}
-                product={item}
-              />
-            ))}
-          </div>
+            {item.map((itemData, index) => (
+  <Cartcard
+    key={index}
+    product={itemData}
+    setItem={setItem}
+    selected={selected}
+    setSelected={setSelected}
+    checkedall={checkedall}
+  />
+))}
 
-          {/* Order Summary Section */}
+          </div>
           <div className="w-full lg:w-[40%] bg-white p-6 rounded-md shadow-md border h-fit sticky top-24">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">
               Order Summary 🧾
@@ -82,9 +79,11 @@ const Cart = () => {
 
             <div className="mt-6">
               <OrangeButton
-                title="Proceed to Checkout"
-                onClick={() => setVisible((prev) => !prev)}
-              />
+  title="Proceed to Checkout"
+  onClick={() => setVisible((prev) => !prev)}
+  disabled={selected.length === 0}
+/>
+
             </div>
           </div>
 

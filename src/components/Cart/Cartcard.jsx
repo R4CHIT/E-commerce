@@ -5,40 +5,44 @@ import { FaHeart } from "react-icons/fa";
 import removeFromCart from "../localstorage/removeFromCart";
 import Quantity from "./Quantity";
 
-const Cartcard = ({ product, setItem, selected, setSelected,checked,setChecked }) => {
+const Cartcard = ({ product, setItem, selected, setSelected ,checkedall}) => {
   const [fav, setFav] = useState(false);
   const [item, setItemState] = useState(product);
-  
-
+  const [checked,setChecked] = useState(false)
   useEffect(() => {
     setItemState(product);
-  }, [product]);
+    if(checkedall){
+      console.log(checkedall);
+      setChecked(true)
+    }else{
+      setChecked(false)
+    }
+  }, [checkedall]);
 
   const toggleFavorite = () => setFav(prev => !prev);
 
   const handleCheckbox = () => {
-  setChecked(prev => !prev);
-  if (!checked) {
-    
-    setSelected(prev => [...(prev || []), item]);
-  } else {
-    
-    setSelected(prev => (prev || []).filter(i => i.id !== item.id));
-  }
-};
-
-
+    if (checked) {
+      setSelected(prev => prev.filter(i => i.id !== item.id));
+      setChecked(false)
+    } else {
+      
+      setSelected(prev => [...prev, item]);
+      setChecked(true)
+    }
+  };
   return (
     <div className="w-full flex justify-center my-2">
       <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl w-[90vw] sm:w-[70vw] flex items-center overflow-hidden border border-gray-200">
 
         <div className="p-4">
-          <input 
-            type="checkbox" 
-            className="w-5 h-5 cursor-pointer" 
-            checked={checked} 
-            onChange={handleCheckbox} 
+          <input
+            type="checkbox"
+            className="w-5 h-5 cursor-pointer"
+            checked={checked}
+            onChange={handleCheckbox}
           />
+
         </div>
 
         
@@ -88,7 +92,7 @@ const Cartcard = ({ product, setItem, selected, setSelected,checked,setChecked }
             </div>
           </div>
 
-          <Quantity data={item} quantity={item?.quantity} setItem={setItem} />
+          <Quantity data={item} quantity={item?.quantity} setItemState={setItemState} selected={selected} setSelected={setSelected}/>
         </div>
       </div>
     </div>
