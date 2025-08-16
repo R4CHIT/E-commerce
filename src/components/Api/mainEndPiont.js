@@ -1,2 +1,2 @@
-const mainEndPoint='http://localhost:3000/'
+const mainEndPoint='https://express-backend-mastercheif.onrender.com/'
 export default mainEndPoint
