@@ -57,7 +57,7 @@ const Card = ({ item }) => {
                 setShowDelete(true);
               }}
             >
-              <MdDelete className="text-white text-2xl drop-shadow cursor-pointer hover:scale-110 transition" />
+              <MdDelete className="text-red-600 text-2xl drop-shadow cursor-pointer hover:scale-110 transition" />
             </button>
           )}
         </div>

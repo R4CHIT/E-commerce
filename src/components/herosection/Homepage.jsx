@@ -2,6 +2,13 @@ import React from "react";
 import { CiShoppingCart } from "react-icons/ci";
 
 function Homepage() {
+  const handleClick = () => {
+    
+    const element = document.getElementById("product");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className="relative flex flex-col justify-center md:mt-0 mt-0 lg:mt-25 mx-0 md:mx-0 lg:mx-[100px] h-[88vh] md:rounded-[0px] rounded-[0px] lg:rounded-lg overflow-hidden">
       <video
@@ -29,7 +36,7 @@ function Homepage() {
           .
         </p>
 
-        <button className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-8 py-3 md:px-10 md:py-4 flex rounded-full items-center gap-3 text-lg md:text-xl font-bold hover:scale-105 transition-all duration-300 cursor-pointer shadow-2xl shadow-orange-500/25">
+        <button className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white px-8 py-3 md:px-10 md:py-4 flex rounded-full items-center gap-3 text-lg md:text-xl font-bold hover:scale-105 transition-all duration-300 cursor-pointer shadow-2xl shadow-orange-500/25" onClick={()=>handleClick()}>
           <span>Shop Now</span>
           <CiShoppingCart className="text-2xl md:text-3xl" />
         </button>
