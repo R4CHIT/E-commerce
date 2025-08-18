@@ -6,6 +6,7 @@ import Navbar from "../NavBar/Navbar";
 import getOrder from "../Api/Order/getOrder";
 import { useOutletContext } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaBars } from "react-icons/fa";
 
 const DashboardMain = () => {
   const user = JSON.parse(localStorage.getItem("userDetails"));
@@ -14,6 +15,7 @@ const DashboardMain = () => {
   }
 
   const [activeScreen, setActiveScreen] = useState(1);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const maindata = useOutletContext();
   const [order, setOrder] = useState([]);
 
@@ -23,16 +25,26 @@ const DashboardMain = () => {
 
   return (
     <>
-      
       <Navbar />
 
-      <div className="flex h-screen bg-sky-50 pt-20">
-        
-        <div className="w-auto border-r bg-white shadow-sm">
-          <DashNav activeScreen={activeScreen} setActiveScreen={setActiveScreen} />
-        </div>
+      
+      <div className="md:hidden flex px-4 py-2 absolute mt-20">
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          className="p-2 bg-white rounded-md shadow-md"
+        >
+          <FaBars size={24} />
+        </button>
+      </div>
 
-        
+      <div className="flex h-screen bg-sky-50 pt-20">
+        <DashNav
+          activeScreen={activeScreen}
+          setActiveScreen={setActiveScreen}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+
         <div className="flex-1 p-6 overflow-y-auto">
           <AnimatePresence mode="wait">
             {activeScreen === 1 && (

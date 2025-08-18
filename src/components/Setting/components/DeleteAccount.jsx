@@ -11,7 +11,7 @@ const DeleteAccount = () => {
 
     
   return (
-    <div className="border bg-slate-100 font-medium flex p-6 m-3 md:mx-10 rounded-md border-gray-300 shadow-lg shadow-gray-700/50 gap-8 hover:cursor-pointer hover:border-gray-400 hover:shadow-black/50 hover:bg-slate-50">
+    <div className="flex flex-col md:flex-row gap-10 p-8 m-4 md:mx-12 rounded-xl border border-gray-100 bg-white shadow-lg hover:shadow-xl transition-all duration-300">
       <div className="flex-1 flex flex-col gap-3 justify-center items-center">
         <div className="text-gray-700 font-bold text-xl italic ">
           Delete Account

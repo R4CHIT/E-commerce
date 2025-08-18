@@ -1,20 +1,51 @@
-
-import React from "react";
-
+import React, { useState } from "react";
 import General from "./components/General";
 import Location from "./components/Location";
 import Password from "./components/Password";
 import DeleteAccount from "./components/DeleteAccount";
 import Navbar from "../NavBar/NavBar";
+import Sidebar from "./components/SideBar";
+import { FaBars } from "react-icons/fa";
+
 const Setting = () => {
+  const [activeTab, setActiveTab] = useState("general");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "general":
+        return <General />;
+      case "location":
+        return <Location />;
+      case "password":
+        return <Password />;
+      case "delete":
+        return <DeleteAccount />;
+      default:
+        return <General />;
+    }
+  };
+
   return (
-    <div className="p-20 flex flex-col h-[100vh]">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-slate-100">
       <Navbar />
-      <div className=" flex flex-col my-4 gap-4">
-        <General />
-        <Location />
-        <Password />
-        <DeleteAccount />
+      <div className="md:hidden flex px-4 py-2 ">
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          className="p-2 bg-white rounded-md shadow-md absolute z-10 mt-22"
+        >
+          <FaBars size={24} />
+        </button>
+      </div>
+
+      <div className="flex flex-1 px-4 sm:px-8 md:px-16 lg:px-20 py-10 gap-8 relative">
+        <Sidebar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isSidebarOpen={isSidebarOpen} 
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
+        <main className="flex-1 mt-20">{renderContent()}</main>
       </div>
     </div>
   );

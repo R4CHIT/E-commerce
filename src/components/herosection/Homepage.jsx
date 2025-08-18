@@ -3,7 +3,6 @@ import { CiShoppingCart } from "react-icons/ci";
 
 function Homepage() {
   const handleClick = () => {
-    
     const element = document.getElementById("product");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });

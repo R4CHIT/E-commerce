@@ -13,14 +13,13 @@ const Cart = () => {
   const [selected, setSelected] = useState([]);
   const [checkedall, setCheckedall] = useState(false);
 
-  
   const toggleSelectAll = () => {
     if (selected.length === item.length) {
-      setSelected([]); 
-      setCheckedall(false)
+      setSelected([]);
+      setCheckedall(false);
     } else {
-      setSelected([...item]); 
-      setCheckedall(true)
+      setSelected([...item]);
+      setCheckedall(true);
     }
   };
 
@@ -39,21 +38,22 @@ const Cart = () => {
                 onClick={toggleSelectAll}
                 className="text-white bg-blue-500 px-4 py-1 rounded-md text-sm"
               >
-                {selected.length === item.length ? "Deselect All" : "Select All"}
+                {selected.length === item.length
+                  ? "Deselect All"
+                  : "Select All"}
               </button>
             </div>
 
             {item.map((itemData, index) => (
-  <Cartcard
-    key={index}
-    product={itemData}
-    setItem={setItem}
-    selected={selected}
-    setSelected={setSelected}
-    checkedall={checkedall}
-  />
-))}
-
+              <Cartcard
+                key={index}
+                product={itemData}
+                setItem={setItem}
+                selected={selected}
+                setSelected={setSelected}
+                checkedall={checkedall}
+              />
+            ))}
           </div>
           <div className="w-full lg:w-[40%] bg-white p-6 rounded-md shadow-md border h-fit sticky top-24">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">
@@ -79,14 +79,12 @@ const Cart = () => {
 
             <div className="mt-6">
               <OrangeButton
-  title="Proceed to Checkout"
-  onClick={() => setVisible((prev) => !prev)}
-  disabled={selected.length === 0}
-/>
-
+                title="Proceed to Checkout"
+                onClick={() => setVisible((prev) => !prev)}
+                disabled={selected.length === 0}
+              />
             </div>
           </div>
-
         </div>
       )}
 

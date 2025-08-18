@@ -18,7 +18,7 @@ const Navbar = ({ setProductData, maindata }) => {
   return (
     <div className="w-full fixed top-0 left-0 z-50 bg-white shadow-xl">
       <nav className="flex justify-between items-center h-20 px-4 md:px-10">
-        {/* Logo */}
+        
         <div
           className="text-2xl md:text-3xl font-bold cursor-pointer bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-orange-500"
           onClick={() => navigate("/")}
@@ -26,7 +26,7 @@ const Navbar = ({ setProductData, maindata }) => {
           PhoneBazaar
         </div>
 
-        {/* Desktop Menu */}
+       
         <div className="hidden md:flex items-center gap-6">
           <Searchbar setProductData={setProductData} maindata={maindata} />
           {data?.role === "admin" ? (
@@ -46,7 +46,7 @@ const Navbar = ({ setProductData, maindata }) => {
           </div>
         </div>
 
-        {/* Mobile Menu Button */}
+       
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -57,7 +57,6 @@ const Navbar = ({ setProductData, maindata }) => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden bg-white w-full px-4 py-4 shadow-lg flex flex-col gap-4">
           <Searchbar setProductData={setProductData} maindata={maindata} />

@@ -32,7 +32,7 @@ const Dashboard = ({ order, productData }) => {
   const pendingOrders = order.filter((o) => o.status !== "completed").length;
 
   return (
-    <div className="p-4 md:p-6 flex flex-col gap-8">
+    <div className="p-4 md:p-6 mt-5 flex flex-col gap-8">
      
       <div className="flex flex-wrap gap-6 justify-center">
         <div className="bg-sky-200 border border-gray-300 rounded-lg p-5 w-40 md:w-44 flex flex-col items-center shadow-lg">

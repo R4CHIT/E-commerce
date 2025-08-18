@@ -15,7 +15,7 @@ const OrderCard = ({ data }) => {
   return (
     <div className="w-full bg-white border rounded-xl shadow-sm p-6 flex flex-col gap-6 transition-all hover:shadow-md">
       
-      {/* Card Header */}
+      
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-3">
         <h3 className="text-sm font-semibold text-gray-900">
           Order #{data._id?.slice(-10) || "N/A"}
@@ -26,10 +26,9 @@ const OrderCard = ({ data }) => {
         </span>
       </div>
 
-      {/* Main Content */}
+     
       <div className="flex flex-col md:flex-row gap-6">
         
-        {/* Left Section: Customer + Delivery */}
         <div className="w-full md:w-1/3 flex flex-col justify-between">
           <div>
             <h4 className="text-sm font-semibold text-gray-900 mb-2">Customer</h4>
@@ -48,7 +47,7 @@ const OrderCard = ({ data }) => {
             <p className="text-xs text-gray-600">{data.deliveryDescription}</p>
           </div>
 
-          {/* Status Section */}
+       
           <div className="mt-4 flex flex-col gap-3">
             <p className="text-xs font-semibold">
               Status:{" "}
@@ -69,7 +68,6 @@ const OrderCard = ({ data }) => {
           </div>
         </div>
 
-        {/* Right Section: Items */}
         <div className="flex-1 border-l pl-5">
           <h4 className="text-sm font-semibold text-gray-900 mb-2">Items</h4>
           <div className="flex justify-between text-xs font-semibold border-b pb-1">
@@ -85,7 +83,7 @@ const OrderCard = ({ data }) => {
             ))}
           </div>
 
-          {/* Total */}
+       
           <div className="mt-3 flex justify-between text-xs font-semibold text-gray-800">
             <span>Total Amount</span>
             <span className="text-blue-600">Rs. {data.totalAmount}</span>
@@ -93,7 +91,7 @@ const OrderCard = ({ data }) => {
         </div>
       </div>
 
-      {/* Status Modal */}
+      
       {showModal && (
         <OrderStatusModel
           status={status}
