@@ -1,58 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "./component/Card";
 
 function Popularitem({ productData }) {
-  
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const navigate = useNavigate();
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = productData.slice(indexOfFirstItem, indexOfLastItem);
-
-  const totalPages = Math.ceil(productData.length / itemsPerPage);
+  // show only first 8 items
+  const itemsToShow = productData.slice(0, 8);
 
   return (
     <>
       <div className="mx-10 md:px-10 lg:px-20 md:mt-10 bg-whiten">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-10">
-          {currentItems.map((item) => (
+          {itemsToShow.map((item) => (
             <Card item={item} key={item._id} />
           ))}
         </div>
 
-        
-        <div className="flex justify-center mt-6 space-x-2">
+        <div className="flex justify-center mt-6">
           <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+            onClick={() => navigate("/products")}
+            className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
           >
-            Prev
-          </button>
-
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index + 1}
-              onClick={() => setCurrentPage(index + 1)}
-              className={`px-3 py-1 rounded ${
-                currentPage === index + 1
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200"
-              }`}
-            >
-              {index + 1}
-            </button>
-          ))}
-
-          <button
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-          >
-            Next
+            Show More
           </button>
         </div>
       </div>

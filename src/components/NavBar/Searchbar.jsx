@@ -15,7 +15,7 @@ const Searchbar = ({ setProductData }) => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-  if (location.pathname != "/cart" && location.pathname != "/setting" && location.pathname != '/addProduct' && location.pathname != "/dashboard") {
+  if (location.pathname === "/") {
     useEffect(() => {
       let temp = maindata.filter(
         (item) =>

@@ -9,6 +9,7 @@ import DashboardMain from './components/Dashboard/DashboardMain.jsx'
 import Setting from './components/Setting/Setting.jsx'
 import Home from './Home.jsx'
 import AddProduct from './components/AddProduct/AddProduct.jsx'
+import ProductMain from './components/ProductList/ProductMain.jsx'
 const router = createBrowserRouter([
   
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   },
   { path: "/setting", element: <Setting /> },
   { path: "/addProduct", element: <AddProduct /> },
+  { path: "/products", element: <ProductMain /> },
 
     ]
   }
