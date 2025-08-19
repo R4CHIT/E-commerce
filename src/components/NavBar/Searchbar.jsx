@@ -7,15 +7,14 @@ const Searchbar = ({ setProductData }) => {
   const location = useLocation();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const maindata = useOutletContext()
+  const maindata = useOutletContext();
   const handleSearch = () => {
-    
     const element = document.getElementById("product");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-  if (location.pathname === "/") {
+  if (location.pathname === "/" || location.pathname === '/products') {
     useEffect(() => {
       let temp = maindata.filter(
         (item) =>

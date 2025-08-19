@@ -5,7 +5,11 @@ import Card from "../../Product/component/Card";
 const Product = ({data}) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-6">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+      {data.length === 0 ?(
+        "No such Products"
+      ):(
+        <>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">
         Products
       </h2>
 
@@ -14,6 +18,8 @@ const Product = ({data}) => {
           <Card key={data._id} item={data} />
         ))}
       </div>
+        </>
+      )}
     </div>
   );
 };
