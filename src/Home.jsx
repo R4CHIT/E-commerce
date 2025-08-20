@@ -6,7 +6,7 @@ const Home = () => {
   const token  = localStorage.getItem('token')
   const [maindata,setmainData] = useState([])
   useEffect(() => {
-    productDataApi(setmainData);
+    productDataApi(setmainData,maindata);
   }, [token]);
   return (
     <div className='h-[100vh]'>

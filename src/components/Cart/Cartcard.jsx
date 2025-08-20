@@ -26,7 +26,6 @@ const Cartcard = ({ product, setItem, selected, setSelected ,checkedall}) => {
       setSelected(prev => prev.filter(i => i.id !== item.id));
       setChecked(false)
     } else {
-      
       setSelected(prev => [...prev, item]);
       setChecked(true)
     }

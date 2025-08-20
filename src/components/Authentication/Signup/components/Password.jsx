@@ -3,14 +3,16 @@ import InputDetails from '../../../Cart/InputDetails'
 import OrangeButton from '../../../Button/OrangeButton'
 import signupApi from '../../../Api/Auth/signupApi'
 import { useNavigate } from "react-router";
+import Loading from '../../../ui/Loading';
 const Password = ({userDetail,setUserDetail,setstage}) => {
+  const [loading,setLoading] = useState(false)
   const navigate = useNavigate()
   const passwordRef = useRef()
   const errorMessageRef = useRef()
   const conformpasswordRef = useRef()
   const [error,setError] = useState()
     
-    const handleProceed = () => {
+    const handleProceed = async() => {
       
       if (passwordRef.current.value == "" || passwordRef.current.value.length < 2) {
         errorMessageRef.current='password should be provided Correctly'
@@ -40,7 +42,14 @@ const Password = ({userDetail,setUserDetail,setstage}) => {
         street: street,
         deliveryDescription: deliveryDescription,
       });
-      signupApi(userDetail,navigate,setstage,setUserDetail);
+      try {
+        setLoading(true)
+        await signupApi(userDetail,navigate,setstage,setUserDetail);
+      } catch (error) {
+        
+      }finally{
+        setLoading(false)
+      }
       }
     };
   return (
@@ -60,7 +69,7 @@ const Password = ({userDetail,setUserDetail,setstage}) => {
         error={error == 2 && true}
         errorMessage={errorMessageRef.current}
       />
-      <OrangeButton title={"Proceed"} onClick={() => handleProceed()} />
+      {loading ?(<Loading />):(<OrangeButton title={"Proceed"} onClick={() => handleProceed()} />)}
     </div>
     </div>
   )

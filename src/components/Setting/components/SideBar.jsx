@@ -1,115 +1,67 @@
-import React, { useState } from "react";
-import { FaStar, FaTimes, FaFilter } from "react-icons/fa";
+import React from "react";
+import { FaUser, FaMapMarkerAlt, FaLock, FaTrash, FaTimes } from "react-icons/fa";
 
-const SideBar = ({ isSidebarOpen, setIsSidebarOpen }) => {
-  const [price, setPrice] = useState(500);
+const Sidebar = ({ activeTab, setActiveTab, isSidebarOpen, setIsSidebarOpen }) => {
+  const menuItems = [
+    { id: "general", label: "General", icon: <FaUser /> },
+    { id: "location", label: "Location", icon: <FaMapMarkerAlt /> },
+    { id: "password", label: "Password", icon: <FaLock /> },
+    { id: "delete", label: "Delete Account", icon: <FaTrash /> },
+  ];
 
   return (
     <>
-      {/* Overlay for mobile */}
       <div
-        className={`fixed inset-0 bg-black/50 z-20 md:hidden transition-opacity ${
-          isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 bg-black/50 bg-opacity-30 z-20 md:hidden transition-opacity 
+          ${isSidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={() => setIsSidebarOpen(false)}
       />
 
-      {/* Sidebar Drawer */}
+      
       <aside
-        className={`fixed top-0 left-0 h-full w-72 bg-white shadow-lg p-6 z-30 transform transition-transform duration-300
-          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-          md:relative md:translate-x-0 md:shadow-none
-        `}
+        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg p-6 z-30 transform transition-transform duration-300
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:relative md:translate-x-0 md:shadow-none`}
       >
-        {/* Close button for mobile */}
-        <div className="md:hidden flex justify-end mb-4">
+        
+        <div className="md:hidden flex justify-end mb-4 pt-20">
           <button onClick={() => setIsSidebarOpen(false)}>
-            <FaTimes size={22} />
+            <FaTimes size={24} />
           </button>
         </div>
 
-        {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-6 flex items-center gap-2">
-          <FaFilter /> Filters
+        
+        <h2 className="text-lg font-bold text-gray-700 mb-8 hidden lg:block">
+          Settings Menu
         </h2>
 
-        {/* Category Filter */}
-        <div className="mb-6">
-          <h3 className="font-medium mb-2">Category</h3>
-          <ul className="space-y-2 text-gray-700">
-            {["Electronics", "Fashion", "Home", "Beauty"].map((cat) => (
-              <li key={cat}>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="accent-orange-500" />
-                  {cat}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Price Range */}
-        <div className="mb-6">
-          <h3 className="font-medium mb-2">Price Range</h3>
-          <input
-            type="range"
-            min="0"
-            max="2000"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            className="w-full accent-orange-500"
-          />
-          <p className="text-sm mt-1 text-gray-600">Up to ${price}</p>
-        </div>
-
-        {/* Rating Filter */}
-        <div className="mb-6">
-          <h3 className="font-medium mb-2">Ratings</h3>
-          <ul className="space-y-1">
-            {[5, 4, 3, 2, 1].map((star) => (
-              <li key={star} className="flex items-center gap-1 cursor-pointer">
-                {Array(star)
-                  .fill()
-                  .map((_, i) => (
-                    <FaStar key={i} className="text-yellow-400" />
-                  ))}
-                <span className="text-sm text-gray-700">& up</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Brand Filter */}
-        <div className="mb-6">
-          <h3 className="font-medium mb-2">Brand</h3>
-          <ul className="space-y-2 text-gray-700">
-            {["Nike", "Apple", "Samsung", "Adidas"].map((brand) => (
-              <li key={brand}>
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="accent-orange-500" />
-                  {brand}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Availability */}
-        <div className="mb-6">
-          <h3 className="font-medium mb-2">Availability</h3>
-          <label className="flex items-center gap-2 text-gray-700">
-            <input type="checkbox" className="accent-orange-500" />
-            In Stock
-          </label>
-        </div>
-
-        {/* Apply Button */}
-        <button className="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition">
-          Apply Filters
-        </button>
+        
+        <nav className="flex flex-col gap-2">
+          {menuItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                setActiveTab(item.id);
+                setIsSidebarOpen(false);
+              }}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 relative text-left
+                ${
+                  activeTab === item.id
+                    ? "bg-orange-50 text-orange-600 font-semibold"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-orange-500"
+                }`}
+            >
+             
+              {activeTab === item.id && (
+                <span className="absolute left-0 top-0 h-full w-1 bg-orange-500 rounded-r-lg"></span>
+              )}
+              <span className="text-lg">{item.icon}</span>
+              <span className="flex text-sm">{item.label}</span>
+            </button>
+          ))}
+        </nav>
       </aside>
     </>
   );
 };
 
-export default SideBar;
+export default Sidebar;

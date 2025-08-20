@@ -3,14 +3,16 @@ import InputDetails from "../../Cart/InputDetails";
 import OrangeButton from "../../Button/OrangeButton";
 import { useNavigate } from "react-router";
 import loginApi from "../../Api/Auth/LoginApi";
+import Loading from "../../ui/Loading";
 const Login = ({ setScreen }) => {
   const navigate = useNavigate();
   const usernameRef = useRef();
   const passwordRef = useRef();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(0);
   const [loginerr, setLoginerr] = useState('');
   const errorMessageRef = useRef();
-  const handleLogin = () => {
+  const handleLogin = async() => {
     if (usernameRef.current.value == "") {
       setError(1);
       errorMessageRef.current = "Please Fill the Username";
@@ -24,8 +26,12 @@ const Login = ({ setScreen }) => {
         username: usernameRef.current.value,
         password: passwordRef.current.value,
       }
-      console.log(userDetail);
-      loginApi(userDetail, navigate,setLoginerr);
+      try {
+        setLoading(true)
+        await loginApi(userDetail,navigate,setLoginerr);
+      } catch (error) {}finally{
+        setLoading(false)
+      }
     }
   };
   return (
@@ -51,7 +57,7 @@ const Login = ({ setScreen }) => {
           />
           <div className="text-red-500 text-left  w-full">{loginerr}</div>
         <div className=" text-center">
-          <OrangeButton title={"Login"} onClick={() => handleLogin()} />
+          {loading ?(<Loading/>):(<OrangeButton title={"Login"} onClick={() => handleLogin()} />)}
         </div>
         <div className="text-center">
           Don't have an Account?{" "}

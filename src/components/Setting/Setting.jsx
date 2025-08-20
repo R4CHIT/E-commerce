@@ -4,7 +4,7 @@ import Location from "./components/Location";
 import Password from "./components/Password";
 import DeleteAccount from "./components/DeleteAccount";
 import Navbar from "../NavBar/NavBar";
-import Sidebar from "./components/SideBar";
+import Sidebar from './components/SideBar'
 import { FaBars } from "react-icons/fa";
 
 const Setting = () => {
@@ -38,14 +38,14 @@ const Setting = () => {
         </button>
       </div>
 
-      <div className="flex flex-1 px-4 sm:px-8 md:px-16 lg:px-20 py-10 gap-8 relative">
+      <div className="flex h-screen bg-sky-50 pt-20">
         <Sidebar
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           isSidebarOpen={isSidebarOpen} 
           setIsSidebarOpen={setIsSidebarOpen}
         />
-        <main className="flex-1 mt-20">{renderContent()}</main>
+        <main className="flex-1">{renderContent()}</main>
       </div>
     </div>
   );

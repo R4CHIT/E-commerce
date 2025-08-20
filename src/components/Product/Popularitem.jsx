@@ -1,17 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "./component/Card";
+import Loading from './component/ProductLoadingSkelaton';
 
 function Popularitem({ productData }) {
   const navigate = useNavigate();
 
-  // show only first 8 items
   const itemsToShow = productData.slice(0, 8);
 
   return (
     <>
       <div className="mx-10 md:px-10 lg:px-20 md:mt-10 bg-whiten">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-10">
+        {productData.length !== 0 ?(
+          <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-10">
           {itemsToShow.map((item) => (
             <Card item={item} key={item._id} />
           ))}
@@ -25,6 +27,12 @@ function Popularitem({ productData }) {
             Show More
           </button>
         </div>
+          </>
+          ):(
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-10">
+          {[1,2,3,4].map((item)=>(<Loading />))}
+          </div>
+        )}
       </div>
     </>
   );
